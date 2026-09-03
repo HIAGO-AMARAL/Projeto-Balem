@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brownie da Fazenda</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f1eb;
+            color: #3e2415;
+        }
+
+        header {
+            background: #4b2817;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .promocao {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .promocao h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .promocao p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preco {
+            font-size: 42px;
+            font-weight: bold;
+            color: #8b4513;
+            margin: 20px;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #8b4513;
+            color: white;
+            text-decoration: none;
+            padding: 16px 35px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background: #632f0d;
+        }
+
+        .aviso {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Brownie da Fazenda</h1>
+    <p>Brownies artesanais feitos com carinho</p>
+</header>
+
+<div class="container">
+
+    <div class="promocao">
+
+        {% if versao == "A" %}
+
+            <h2>🔥 OFERTA ESPECIAL!</h2>
+
+            <p>
+                Brownie artesanal com uma promoção
+                exclusiva por tempo limitado!
+            </p>
+
+            <div class="preco">
+                R$ 2,00
+            </div>
+
+            <p>
+                Aproveite enquanto a oferta está disponível!
+            </p>
+
+        {% else %}
+
+            <h2>Brownie Artesanal</h2>
+
+            <p>
+                Conheça nosso brownie artesanal,
+                preparado com ingredientes selecionados.
+            </p>
+
+            <div class="preco">
+                R$ 5,00
+            </div>
+
+            <p>
+                Um brownie delicioso para qualquer momento.
+            </p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/produto" class="botao">
+            Ver Brownie
+        </a>
+
+        <div class="aviso">
+            Projeto acadêmico de simulação educativa.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
