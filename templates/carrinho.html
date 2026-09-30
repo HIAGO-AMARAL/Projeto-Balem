@@ -1,49 +1,113 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block titulo %}Meu carrinho · Doce Pausa{% endblock %}
 
-    <title>Finalizar pedido</title>
+{% block conteudo %}
+<section class="secao secao--pagina">
+    <div class="secao__interno">
 
-<body>
+        <header class="secao__titulo secao__titulo--esquerda">
+            <h1>Meu carrinho</h1>
+            <p>Confira os seus doces antes de finalizar.</p>
+        </header>
 
-<div class="container">
+        {% if not itens %}
 
-    <h1>Finalizar pedido</h1>
+        <div class="vazio">
+            <div class="vazio__emoji" aria-hidden="true">🛒</div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Que tal um brigadeirinho por R$ 1,00 para começar?</p>
+            <a class="botao botao--grande" href="{{ url_for('index') }}#doces">Escolher doces</a>
+        </div>
 
-    <div class="produto">
+        {% else %}
 
-        <h2>Brownie Artesanal</h2>
+        <div class="carrinho">
 
-        <p>
-            Quantidade: {{ quantidade }}
-        </p>
+            <ul class="lista-carrinho">
+                {% for item in itens %}
+                {% set d = item.doce %}
+                <li class="item-carrinho">
 
-        <p>
-            Preço unitário: R$ {{ "%.2f"|format(preco) }}
-        </p>
+                    {% set foto = foto_do_doce(d.id) %}
+                    <div class="item-carrinho__emoji cat-{{ d.categoria }}" aria-hidden="true">
+                        {% if foto %}<img src="{{ url_for('static', filename=foto) }}" alt="" width="72" height="72">{% else %}{{ d.emoji }}{% endif %}
+                    </div>
+
+                    <div class="item-carrinho__info">
+                        <h3>{{ d.nome }}</h3>
+                        <p>
+                            <s>{{ d.preco_original|brl }}</s>
+                            <strong>{{ d.preco|brl }}</strong> cada
+                        </p>
+                    </div>
+
+                    <div class="quantidade" role="group" aria-label="Quantidade de {{ d.nome }}">
+                        <form method="post" action="{{ url_for('atualizar', doce_id=d.id) }}">
+                            <input type="hidden" name="acao" value="menos">
+                            <button type="submit" aria-label="Diminuir quantidade">−</button>
+                        </form>
+                        <span>{{ item.quantidade }}</span>
+                        <form method="post" action="{{ url_for('atualizar', doce_id=d.id) }}">
+                            <input type="hidden" name="acao" value="mais">
+                            <button type="submit" aria-label="Aumentar quantidade">+</button>
+                        </form>
+                    </div>
+
+                    <div class="item-carrinho__subtotal">{{ item.subtotal|brl }}</div>
+
+                    <form method="post" action="{{ url_for('atualizar', doce_id=d.id) }}">
+                        <input type="hidden" name="acao" value="remover">
+                        <button type="submit" class="botao-remover" aria-label="Remover {{ d.nome }}" title="Remover">✕</button>
+                    </form>
+
+                </li>
+                {% endfor %}
+            </ul>
+
+            <aside class="resumo">
+                <h2>Resumo do pedido</h2>
+
+                <dl class="resumo__linhas">
+                    <div>
+                        <dt>Itens ({{ resumo.quantidade }})</dt>
+                        <dd><s>{{ resumo.total_original|brl }}</s></dd>
+                    </div>
+                    <div>
+                        <dt>Desconto</dt>
+                        <dd class="verde">− {{ resumo.economia|brl }}</dd>
+                    </div>
+                    <div>
+                        <dt>Retirada no intervalo</dt>
+                        <dd class="verde">Grátis</dd>
+                    </div>
+                    <div class="resumo__total">
+                        <dt>Total</dt>
+                        <dd>{{ resumo.total|brl }}</dd>
+                    </div>
+                </dl>
+
+                <p class="resumo__economia">🎉 Você está economizando {{ resumo.economia|brl }}!</p>
+
+                <form method="post" action="{{ url_for('finalizar') }}">
+                    <button type="submit" class="botao botao--grande botao--cheio">Finalizar compra</button>
+                </form>
+
+                <p class="resumo__nota">
+                    {% if logado %}
+                        Pagamento na retirada, durante o intervalo.
+                    {% else %}
+                        Você vai precisar entrar na sua conta para finalizar.
+                    {% endif %}
+                </p>
+            </aside>
+
+        </div>
+
+        <p class="continuar"><a href="{{ url_for('index') }}#doces">← Continuar escolhendo doces</a></p>
+
+        {% endif %}
 
     </div>
-
-    <div class="total">
-        Total: R$ {{ "%.2f"|format(total) }}
-    </div>
-
-    <form action="/finalizar" method="POST">
-
-        <button type="submit">
-            Finalizar pedido
-        </button>
-
-    </form>
-
-    <div class="seguro">
-        Nenhum dado de pagamento será solicitado.
-    </div>
-
-</div>
-
-</body>
-</html>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}Painel da apresentação{% endblock %}
+{% block classe_body %}educativo{% endblock %}
+
+{% block cabecalho %}{% endblock %}
+{% block rodape %}{% endblock %}
+
+{% block conteudo %}
+<section class="secao secao--pagina">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h1>Painel da apresentação</h1>
+            <p>Só contadores. Nenhum dado pessoal é guardado.</p>
+        </header>
+
+        <div class="painel">
+            <div class="painel__card">
+                <strong>{{ stats.logins }}</strong>
+                <span>pessoas digitaram e-mail e senha no login</span>
+            </div>
+            <div class="painel__card painel__card--destaque">
+                <strong>{{ stats.caiu }}</strong>
+                <span>pessoas finalizaram a compra e caíram no phishing</span>
+            </div>
+        </div>
+
+        <p class="final">
+            <a href="{{ url_for('index') }}">← Voltar para a loja</a>
+        </p>
+
+        <p class="painel__nota">Os contadores voltam a zero quando o servidor é reiniciado.</p>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Doce Pausa">
+  <title>Doce Pausa</title>
+  <!-- fundo -->
+  <circle cx="32" cy="32" r="32" fill="#FF5C8A"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 3.5"/>
+
+  <!-- forminha -->
+  <path d="M17.5 35 H46.5 L42.6 53 Q42.2 55 40.2 55 H23.8 Q21.8 55 21.4 53 Z" fill="#7A4A33"/>
+  <path d="M25 37 L26.6 54 M32 37 V54 M39 37 L37.4 54" stroke="#4B2A1B" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+
+  <!-- cobertura em três camadas -->
+  <path d="M14.5 36 Q13 28.5 21 27.5 Q20 24.5 24 23 Q49 22 43 27.5 Q51 28.5 49.5 36 Q41 40 32 40 Q23 40 14.5 36 Z" fill="#FFF4DE"/>
+  <path d="M19 27.6 Q18.5 21.5 25.5 20.5 Q25.5 15.5 32 14.5 Q38.5 15.5 38.5 20.5 Q45.5 21.5 45 27.6 Q32 31 19 27.6 Z" fill="#FFE3EC"/>
+  <path d="M24.5 20.8 Q25 16.5 32 15.6 Q39 16.5 39.5 20.8 Q32 24 24.5 20.8 Z" fill="#FFF4DE"/>
+
+  <!-- cereja -->
+  <path d="M32.5 10.5 Q35 5.5 40 5" fill="none" stroke="#3E9B62" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="12.5" r="4.6" fill="#E5233F"/>
+  <circle cx="30.4" cy="11" r="1.3" fill="#FFFFFF" opacity=".75"/>
+
+  <!-- confeitos -->
+  <rect x="21" y="30.5" width="4" height="1.7" rx=".85" fill="#FF5C8A" transform="rotate(-25 23 31.3)"/>
+  <rect x="38" y="31.5" width="4" height="1.7" rx=".85" fill="#6FD3B5" transform="rotate(20 40 32.3)"/>
+  <rect x="29.5" y="33.6" width="4" height="1.7" rx=".85" fill="#FFD84D" transform="rotate(-8 31.5 34.4)"/>
+  <rect x="45" y="32.6" width="3.4" height="1.5" rx=".75" fill="#B9A2FF" transform="rotate(-30 46.7 33.3)"/>
+  <rect x="16.8" y="32.8" width="3.4" height="1.5" rx=".75" fill="#B9A2FF" transform="rotate(25 18.5 33.5)"/>
+</svg>

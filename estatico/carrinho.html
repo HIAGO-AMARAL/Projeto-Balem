@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block titulo %}Meu carrinho · Doce Pausa{% endblock %}
+
+{% block conteudo %}
+<section class="secao secao--pagina">
+    <div class="secao__interno">
+
+        <header class="secao__titulo secao__titulo--esquerda">
+            <h1>Meu carrinho</h1>
+            <p>Confira os seus doces antes de finalizar.</p>
+        </header>
+
+        <div class="vazio" id="carrinho-vazio" hidden>
+            <div class="vazio__emoji" aria-hidden="true">🛒</div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Que tal um brigadeirinho por R$ 1,00 para começar?</p>
+            <a class="botao botao--grande" href="index.html#doces">Escolher doces</a>
+        </div>
+
+        <div id="carrinho-cheio" hidden>
+            <div class="carrinho">
+
+                <ul class="lista-carrinho" id="lista-carrinho"></ul>
+
+                <aside class="resumo">
+                    <h2>Resumo do pedido</h2>
+
+                    <dl class="resumo__linhas">
+                        <div>
+                            <dt id="resumo-itens">Itens</dt>
+                            <dd><s id="resumo-original"></s></dd>
+                        </div>
+                        <div>
+                            <dt>Desconto</dt>
+                            <dd class="verde" id="resumo-desconto"></dd>
+                        </div>
+                        <div>
+                            <dt>Retirada no intervalo</dt>
+                            <dd class="verde">Grátis</dd>
+                        </div>
+                        <div class="resumo__total">
+                            <dt>Total</dt>
+                            <dd id="resumo-total"></dd>
+                        </div>
+                    </dl>
+
+                    <p class="resumo__economia" id="resumo-economia"></p>
+
+                    <button type="button" class="botao botao--grande botao--cheio" id="botao-finalizar">Finalizar compra</button>
+
+                    <p class="resumo__nota" id="resumo-nota"></p>
+                </aside>
+
+            </div>
+
+            <p class="continuar"><a href="index.html#doces">← Continuar escolhendo doces</a></p>
+        </div>
+
+    </div>
+</section>
+
+{# Catálogo em JSON para o carrinho calcular os preços no navegador. #}
+<script id="dados-doces" type="application/json">{{ doces_dados|tojson }}</script>
+{% endblock %}

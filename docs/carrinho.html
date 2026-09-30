@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#FF5C8A">
+
+    <title>Meu carrinho · Doce Pausa</title>
+
+    <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <!-- Contador de acessos (GoatCounter): sem cookies, sem IP e sem dados pessoais. -->
+    <script data-goatcounter="https://docepausa.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    
+</head>
+
+<body class="loja">
+
+
+<div class="faixa-promo">
+    <span class="faixa-promo__texto">
+        ⏰ Promoção relâmpago termina em
+        <strong id="contador">15:00</strong>
+        <span class="faixa-promo__extra">· Retirada no intervalo, sem frete!</span>
+    </span>
+</div>
+
+<header class="cabecalho">
+    <div class="cabecalho__interno">
+
+        <a class="marca" href="index.html" aria-label="Doce Pausa, página inicial">
+            <img class="marca__logo" src="assets/img/logo.svg" alt="" width="46" height="46">
+            <span class="marca__texto">
+                <span class="marca__nome">Doce <em>Pausa</em></span>
+                <span class="marca__slogan">o intervalo mais gostoso</span>
+            </span>
+        </a>
+
+        <nav class="menu" aria-label="Menu principal">
+            <a href="index.html">Início</a>
+            <a href="index.html#doces">Doces</a>
+            <a href="index.html#avaliacoes">Avaliações</a>
+        </nav>
+
+        <div class="cabecalho__acoes">
+            <a class="botao-link" href="entrar.html" id="link-entrar">👤 Entrar</a>
+
+            <span class="form-inline" id="area-logado" hidden>
+                <span class="conta">👤 Olá!</span>
+                <button type="button" class="botao-link" id="botao-sair">Sair</button>
+            </span>
+
+            <a class="botao-carrinho" href="carrinho.html" aria-label="Carrinho de compras">
+                <span aria-hidden="true">🛒</span>
+                <span class="botao-carrinho__texto">Carrinho</span>
+                <b class="selo-carrinho" id="contagem-carrinho" hidden>0</b>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+    
+<section class="secao secao--pagina">
+    <div class="secao__interno">
+
+        <header class="secao__titulo secao__titulo--esquerda">
+            <h1>Meu carrinho</h1>
+            <p>Confira os seus doces antes de finalizar.</p>
+        </header>
+
+        <div class="vazio" id="carrinho-vazio" hidden>
+            <div class="vazio__emoji" aria-hidden="true">🛒</div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Que tal um brigadeirinho por R$ 1,00 para começar?</p>
+            <a class="botao botao--grande" href="index.html#doces">Escolher doces</a>
+        </div>
+
+        <div id="carrinho-cheio" hidden>
+            <div class="carrinho">
+
+                <ul class="lista-carrinho" id="lista-carrinho"></ul>
+
+                <aside class="resumo">
+                    <h2>Resumo do pedido</h2>
+
+                    <dl class="resumo__linhas">
+                        <div>
+                            <dt id="resumo-itens">Itens</dt>
+                            <dd><s id="resumo-original"></s></dd>
+                        </div>
+                        <div>
+                            <dt>Desconto</dt>
+                            <dd class="verde" id="resumo-desconto"></dd>
+                        </div>
+                        <div>
+                            <dt>Retirada no intervalo</dt>
+                            <dd class="verde">Grátis</dd>
+                        </div>
+                        <div class="resumo__total">
+                            <dt>Total</dt>
+                            <dd id="resumo-total"></dd>
+                        </div>
+                    </dl>
+
+                    <p class="resumo__economia" id="resumo-economia"></p>
+
+                    <button type="button" class="botao botao--grande botao--cheio" id="botao-finalizar">Finalizar compra</button>
+
+                    <p class="resumo__nota" id="resumo-nota"></p>
+                </aside>
+
+            </div>
+
+            <p class="continuar"><a href="index.html#doces">← Continuar escolhendo doces</a></p>
+        </div>
+
+    </div>
+</section>
+
+
+<script id="dados-doces" type="application/json">{"beijinho": {"categoria": "chocolate", "desconto": 67, "descricao": "Leite condensado, coco ralado e um cravinho no topo.", "emoji": "\ud83e\udd65", "foto": "img/doces/beijinho.jpg", "id": "beijinho", "nome": "Beijinho de coco", "preco": 1.0, "preco_original": 3.0, "tag": null}, "bolo-cenoura": {"categoria": "bolos", "desconto": 70, "descricao": "Fatia fofinha com aquela cobertura de brigadeiro.", "emoji": "\ud83e\udd55", "foto": "img/doces/bolo-cenoura.jpg", "id": "bolo-cenoura", "nome": "Bolo de cenoura com chocolate", "preco": 1.5, "preco_original": 5.0, "tag": "Mais vendido"}, "bolo-chocolate": {"categoria": "bolos", "desconto": 64, "descricao": "Massa molhadinha e recheio cremoso de chocolate.", "emoji": "\ud83c\udf82", "foto": "img/doces/bolo-chocolate.jpg", "id": "bolo-chocolate", "nome": "Fatia de bolo de chocolate", "preco": 2.0, "preco_original": 5.5, "tag": null}, "bolo-pote": {"categoria": "copinhos", "desconto": 62, "descricao": "Camadas de bolo, creme de ninho e morangos.", "emoji": "\ud83c\udf70", "foto": "img/doces/bolo-pote.jpg", "id": "bolo-pote", "nome": "Bolo de pote ninho com morango", "preco": 3.0, "preco_original": 8.0, "tag": "Novo"}, "brigadeiro": {"categoria": "chocolate", "desconto": 67, "descricao": "O cl\u00e1ssico de chocolate, enrolado no granulado.", "emoji": "\ud83c\udf6b", "foto": "img/doces/brigadeiro.jpg", "id": "brigadeiro", "nome": "Brigadeiro tradicional", "preco": 1.0, "preco_original": 3.0, "tag": "Mais vendido"}, "brigadeiro-colher": {"categoria": "copinhos", "desconto": 70, "descricao": "Aquele de comer com colher, direto do copinho.", "emoji": "\ud83e\udd44", "foto": "img/doces/brigadeiro-colher.jpg", "id": "brigadeiro-colher", "nome": "Brigadeiro de colher", "preco": 1.5, "preco_original": 5.0, "tag": null}, "brigadeiro-ninho": {"categoria": "chocolate", "desconto": 57, "descricao": "Branquinho, cremoso e com sabor de leite em p\u00f3.", "emoji": "\ud83e\udd5b", "foto": "img/doces/brigadeiro-ninho.jpg", "id": "brigadeiro-ninho", "nome": "Brigadeiro de leite ninho", "preco": 1.5, "preco_original": 3.5, "tag": null}, "brownie": {"categoria": "biscoitos", "desconto": 67, "descricao": "Casquinha crocante e miolo bem molhadinho.", "emoji": "\ud83d\udfeb", "foto": "img/doces/brownie.jpg", "id": "brownie", "nome": "Brownie de chocolate", "preco": 2.0, "preco_original": 6.0, "tag": null}, "cajuzinho": {"categoria": "chocolate", "desconto": 67, "descricao": "Amendoim mo\u00eddo com chocolate, coberto de a\u00e7\u00facar.", "emoji": "\ud83e\udd5c", "foto": "img/doces/cajuzinho.jpg", "id": "cajuzinho", "nome": "Cajuzinho", "preco": 1.0, "preco_original": 3.0, "tag": null}, "casadinho": {"categoria": "biscoitos", "desconto": 66, "descricao": "Dois biscoitinhos de maisena com doce de leite no meio.", "emoji": "\ud83e\udd60", "foto": "img/doces/casadinho.jpg", "id": "casadinho", "nome": "Casadinho", "preco": 1.2, "preco_original": 3.5, "tag": null}, "cocada": {"categoria": "festa", "desconto": 71, "descricao": "Coco queimadinho por cima e macio por dentro.", "emoji": "\ud83c\udfdd\ufe0f", "foto": "img/doces/cocada.jpg", "id": "cocada", "nome": "Cocada de forno", "preco": 1.0, "preco_original": 3.5, "tag": null}, "cookie": {"categoria": "biscoitos", "desconto": 67, "descricao": "Crocante por fora, macio por dentro.", "emoji": "\ud83c\udf6a", "foto": "img/doces/cookie.jpg", "id": "cookie", "nome": "Cookie de gotas de chocolate", "preco": 2.0, "preco_original": 6.0, "tag": "Mais vendido"}, "cupcake": {"categoria": "bolos", "desconto": 64, "descricao": "Cobertura de chantilly colorido e confeitos.", "emoji": "\ud83e\uddc1", "foto": "img/doces/cupcake.jpg", "id": "cupcake", "nome": "Cupcake de baunilha", "preco": 2.5, "preco_original": 7.0, "tag": "Novo"}, "maca-do-amor": {"categoria": "festa", "desconto": 67, "descricao": "Ma\u00e7\u00e3 coberta com calda vermelhinha e crocante.", "emoji": "\ud83c\udf4e", "foto": "img/doces/maca-do-amor.jpg", "id": "maca-do-amor", "nome": "Ma\u00e7\u00e3 do amor", "preco": 2.0, "preco_original": 6.0, "tag": "\u00daltimas unidades"}, "mousse-maracuja": {"categoria": "copinhos", "desconto": 70, "descricao": "Azedinho na medida, com calda de maracuj\u00e1.", "emoji": "\ud83e\udd63", "foto": "img/doces/mousse-maracuja.jpg", "id": "mousse-maracuja", "nome": "Mousse de maracuj\u00e1", "preco": 1.5, "preco_original": 5.0, "tag": null}, "pacoca": {"categoria": "biscoitos", "desconto": 75, "descricao": "Amendoim e a\u00e7\u00facar, do jeito que a vov\u00f3 fazia.", "emoji": "\ud83c\udf30", "foto": "img/doces/pacoca.jpg", "id": "pacoca", "nome": "Pa\u00e7oca rolha", "preco": 0.5, "preco_original": 2.0, "tag": null}, "palha-italiana": {"categoria": "chocolate", "desconto": 67, "descricao": "Brigadeiro com pedacinhos crocantes de biscoito.", "emoji": "\ud83e\udd6e", "foto": "img/doces/palha-italiana.jpg", "id": "palha-italiana", "nome": "Palha italiana", "preco": 2.0, "preco_original": 6.0, "tag": null}, "pao-de-mel": {"categoria": "bolos", "desconto": 67, "descricao": "Massa de mel e especiarias com doce de leite.", "emoji": "\ud83c\udf6f", "foto": "img/doces/pao-de-mel.jpg", "id": "pao-de-mel", "nome": "P\u00e3o de mel", "preco": 2.0, "preco_original": 6.0, "tag": null}, "pe-de-moleque": {"categoria": "festa", "desconto": 70, "descricao": "Amendoim crocante numa barrinha de rapadura.", "emoji": "\ud83e\udd5c", "foto": "img/doces/pe-de-moleque.jpg", "id": "pe-de-moleque", "nome": "P\u00e9 de moleque", "preco": 1.2, "preco_original": 4.0, "tag": null}, "pipoca-doce": {"categoria": "festa", "desconto": 62, "descricao": "Pipoca caramelizada, saquinho cheio.", "emoji": "\ud83c\udf7f", "foto": "img/doces/pipoca-doce.jpg", "id": "pipoca-doce", "nome": "Pipoca doce", "preco": 1.5, "preco_original": 4.0, "tag": null}, "pudim": {"categoria": "copinhos", "desconto": 67, "descricao": "Sem furinhos e com muita calda de caramelo.", "emoji": "\ud83c\udf6e", "foto": "img/doces/pudim.jpg", "id": "pudim", "nome": "Pudim de leite no copinho", "preco": 2.0, "preco_original": 6.0, "tag": null}, "sacole": {"categoria": "copinhos", "desconto": 75, "descricao": "Geladinho cremoso para o calor do recreio.", "emoji": "\ud83c\udf67", "foto": "img/doces/sacole.jpg", "id": "sacole", "nome": "Sacol\u00e9 de chocolate", "preco": 1.0, "preco_original": 4.0, "tag": null}, "torta-limao": {"categoria": "bolos", "desconto": 67, "descricao": "Base crocante, creme de lim\u00e3o e cobertura de merengue.", "emoji": "\ud83c\udf4b", "foto": "img/doces/torta-limao.jpg", "id": "torta-limao", "nome": "Fatia de torta de lim\u00e3o", "preco": 2.0, "preco_original": 6.0, "tag": "\u00daltimas unidades"}, "torta-morango": {"categoria": "bolos", "desconto": 64, "descricao": "Creme de leite condensado e morangos fresquinhos.", "emoji": "\ud83c\udf53", "foto": "img/doces/torta-morango.jpg", "id": "torta-morango", "nome": "Fatia de torta de morango", "preco": 2.5, "preco_original": 7.0, "tag": "\u00daltimas unidades"}, "trufa": {"categoria": "chocolate", "desconto": 70, "descricao": "Recheio de ganache envolvido em chocolate ao leite.", "emoji": "\ud83c\udf6c", "foto": "img/doces/trufa.jpg", "id": "trufa", "nome": "Trufa de chocolate", "preco": 1.5, "preco_original": 5.0, "tag": "Novo"}}</script>
+
+</main>
+
+
+<footer class="rodape">
+    <div class="rodape__interno">
+        <div class="rodape__marca">
+            <img src="assets/img/logo.svg" alt="" width="40" height="40">
+            <div>
+                <strong>Doce Pausa</strong>
+                <p>Doces artesanais feitos com carinho para o seu intervalo.</p>
+            </div>
+        </div>
+        <div>
+            <strong>Atendimento</strong>
+            <p>Segunda a sexta, no intervalo</p>
+        </div>
+        <div>
+            <strong>Retirada</strong>
+            <p>Pague na hora, sem frete</p>
+        </div>
+    </div>
+    <p class="rodape__direitos">© 2026 Doce Pausa · Todos os direitos reservados</p>
+</footer>
+
+
+<div class="toast-area" id="area-toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/loja.js"></script>
+
+</body>
+</html>

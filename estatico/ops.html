@@ -17,13 +17,13 @@
         <p class="revelacao__texto">
             A <strong>Doce Pausa não existe</strong>. Esta loja foi criada pela nossa turma
             para a aula de segurança da informação. Nenhuma compra foi feita e
-            nenhum dado seu foi guardado. Assista ao vídeo e veja como não cair de verdade.
+            nenhum dado pessoal seu foi guardado. Assista ao vídeo e veja como não cair de verdade.
         </p>
 
         <!-- ================================================================
              ESPAÇO DO VÍDEO DA EQUIPE
-             O vídeo é escolhido em app.py (VIDEO_ARQUIVO / VIDEO_YOUTUBE).
-             Nada precisa ser mudado neste arquivo.
+             O vídeo é escolhido em app.py (VIDEO_ARQUIVO / VIDEO_YOUTUBE) e
+             entra aqui quando o site é gerado (python gerar_estatico.py).
              ================================================================ -->
         <div class="video" id="video">
             {% if video and video.tipo == "arquivo" %}
@@ -85,7 +85,7 @@
             <article class="sinal">
                 <span class="sinal__icone" aria-hidden="true">🌐</span>
                 <h3>Origem e endereço duvidosos</h3>
-                <p>Quem te mandou o link? Você conferiu o endereço do site? Golpes copiam nomes de lojas de verdade.</p>
+                <p>Quem te mandou o link? Você conferiu o endereço do site? Golpes copiam nomes de lojas de verdade. E um QR code esconde o endereço até você escanear.</p>
             </article>
         </div>
 
@@ -100,7 +100,7 @@
             <ul class="checklist">
                 <li>Desconfie de ofertas boas demais para ser verdade.</li>
                 <li>Confira o endereço do site antes de digitar qualquer dado.</li>
-                <li>Não clique em links de mensagens inesperadas. Digite o endereço você mesmo.</li>
+                <li>Não clique em links de mensagens inesperadas nem escaneie QR codes desconhecidos.</li>
                 <li>Use uma senha diferente em cada conta e ative a verificação em duas etapas.</li>
                 <li>Pesquise a loja antes de comprar e veja se outras pessoas relatam problemas.</li>
                 <li>Na dúvida, pare e pergunte a um adulto ou professor.</li>
@@ -134,15 +134,18 @@
             <div>
                 <h2>E os meus dados?</h2>
                 <p>
-                    Nada foi guardado. Este site <strong>não tem banco de dados</strong>: o e-mail e a
+                    Nada pessoal foi guardado. Este site <strong>não tem banco de dados</strong>: o e-mail e a
                     senha que você digitou nem saíram do seu navegador, e nenhum pagamento foi feito.
+                    {% if goatcounter %}
+                    Só contamos quantas pessoas abriram o site, sem cookies e sem saber quem você é.
+                    {% endif %}
                     Se fosse um golpe de verdade, esses dados já estariam com o criminoso.
                 </p>
             </div>
         </div>
 
         <p class="final">
-            <a class="botao botao--grande" href="{{ url_for('index') }}">Voltar para a loja</a>
+            <a class="botao botao--grande" href="index.html">Voltar para a loja</a>
         </p>
     </div>
 </section>

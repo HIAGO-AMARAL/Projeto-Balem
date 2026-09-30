@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}Entrar · Doce Pausa{% endblock %}
+
+{% block conteudo %}
+<section class="secao secao--pagina">
+    <div class="login">
+
+        <div class="login__lateral" aria-hidden="true">
+            <div class="login__emoji">🧁</div>
+            <h2>Falta pouquinho para adoçar o seu intervalo!</h2>
+            <ul>
+                <li>🍫 Doces a partir de R$ 0,50</li>
+                <li>🎁 Retirada sem frete</li>
+                <li>⏰ Promoção por tempo limitado</li>
+            </ul>
+        </div>
+
+        <div class="login__cartao">
+            <h1>Entrar na sua conta</h1>
+            <p class="login__sub">Acesse para finalizar o seu pedido.</p>
+
+            {#
+              ATENÇÃO: os campos abaixo NÃO têm o atributo "name" de propósito.
+              Sem "name", o navegador não envia o que foi digitado, então o
+              e-mail e a senha nunca chegam ao servidor. Não adicione "name".
+            #}
+            <form method="post" action="{{ url_for('entrar', proximo=proximo) }}" autocomplete="off">
+
+                <label class="campo">
+                    <span>E-mail</span>
+                    <input type="email" placeholder="voce@email.com" required autocomplete="off">
+                </label>
+
+                <label class="campo">
+                    <span>Senha</span>
+                    <input type="password" placeholder="Digite sua senha" required autocomplete="new-password">
+                </label>
+
+                <button type="submit" class="botao botao--grande botao--cheio">Entrar e continuar</button>
+            </form>
+
+            <p class="login__seguro">🔒 Ambiente seguro · Seus dados estão protegidos</p>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

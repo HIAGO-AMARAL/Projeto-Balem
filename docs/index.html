@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#FF5C8A">
+
+    <title>Doce Pausa · Doces artesanais para o seu intervalo</title>
+
+    <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    
+    <!-- Contador de acessos (GoatCounter): sem cookies, sem IP e sem dados pessoais. -->
+    <script data-goatcounter="https://docepausa.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    
+</head>
+
+<body class="loja">
+
+
+<div class="faixa-promo">
+    <span class="faixa-promo__texto">
+        ⏰ Promoção relâmpago termina em
+        <strong id="contador">15:00</strong>
+        <span class="faixa-promo__extra">· Retirada no intervalo, sem frete!</span>
+    </span>
+</div>
+
+<header class="cabecalho">
+    <div class="cabecalho__interno">
+
+        <a class="marca" href="index.html" aria-label="Doce Pausa, página inicial">
+            <img class="marca__logo" src="assets/img/logo.svg" alt="" width="46" height="46">
+            <span class="marca__texto">
+                <span class="marca__nome">Doce <em>Pausa</em></span>
+                <span class="marca__slogan">o intervalo mais gostoso</span>
+            </span>
+        </a>
+
+        <nav class="menu" aria-label="Menu principal">
+            <a href="index.html">Início</a>
+            <a href="index.html#doces">Doces</a>
+            <a href="index.html#avaliacoes">Avaliações</a>
+        </nav>
+
+        <div class="cabecalho__acoes">
+            <a class="botao-link" href="entrar.html" id="link-entrar">👤 Entrar</a>
+
+            <span class="form-inline" id="area-logado" hidden>
+                <span class="conta">👤 Olá!</span>
+                <button type="button" class="botao-link" id="botao-sair">Sair</button>
+            </span>
+
+            <a class="botao-carrinho" href="carrinho.html" aria-label="Carrinho de compras">
+                <span aria-hidden="true">🛒</span>
+                <span class="botao-carrinho__texto">Carrinho</span>
+                <b class="selo-carrinho" id="contagem-carrinho" hidden>0</b>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+    
+
+<section class="hero">
+    <div class="hero__interno">
+
+        <div class="hero__texto">
+            <p class="hero__chamada">🍬 Doces do intervalo</p>
+            <h1>Doce demais para <span class="destaque">pagar caro</span></h1>
+            <p class="hero__sub">
+                Brigadeiro por <strong>R$ 1,00</strong>, torta de limão por
+                <strong>R$ 2,00</strong>, cookie por <strong>R$ 2,00</strong>.
+                Peça agora e retire no intervalo.
+            </p>
+            <div class="hero__botoes">
+                <a class="botao botao--grande" href="#doces">Ver os doces</a>
+                <a class="botao botao--grande botao--contorno" href="carrinho.html">Meu carrinho</a>
+            </div>
+        </div>
+
+        <div class="hero__arte" aria-hidden="true">
+            <div class="hero__prato">🍰</div>
+            <span class="flutuante flutuante--1">🍓</span>
+            <span class="flutuante flutuante--2">🧁</span>
+            <span class="flutuante flutuante--3">🍪</span>
+            <span class="flutuante flutuante--4">🍫</span>
+            <div class="hero__etiqueta">
+                <small>Torta de limão</small>
+                <s>R$ 6,00</s>
+                <strong>R$ 2,00</strong>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="confianca" aria-label="Diferenciais da loja">
+    <ul class="confianca__lista">
+        <li><span aria-hidden="true">🎁</span> Sem frete</li>
+        <li><span aria-hidden="true">⭐</span> 4,9 de 1.200 avaliações</li>
+        <li><span aria-hidden="true">🔒</span> Compra 100% segura</li>
+        <li><span aria-hidden="true">🍳</span> Feitos no dia</li>
+    </ul>
+</section>
+
+<section class="secao" id="doces">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Nossos doces</h2>
+            <p>25 delícias com preço de promoção. Corra, o estoque é limitado!</p>
+        </header>
+
+        <div class="filtros">
+            <label class="busca">
+                <span class="busca__icone" aria-hidden="true">🔎</span>
+                <input type="search" id="busca" placeholder="Buscar doce…" autocomplete="off" aria-label="Buscar doce">
+            </label>
+
+            <div class="chips" role="group" aria-label="Filtrar por categoria">
+                <button type="button" class="chip is-ativo" data-filtro="todos">
+                    Todos <span>25</span>
+                </button>
+                
+                <button type="button" class="chip" data-filtro="chocolate">
+                    <span aria-hidden="true">🍫</span> Brigadeiros e trufas
+                    <span>6</span>
+                </button>
+                
+                <button type="button" class="chip" data-filtro="bolos">
+                    <span aria-hidden="true">🍰</span> Bolos e tortas
+                    <span>6</span>
+                </button>
+                
+                <button type="button" class="chip" data-filtro="biscoitos">
+                    <span aria-hidden="true">🍪</span> Cookies e biscoitos
+                    <span>4</span>
+                </button>
+                
+                <button type="button" class="chip" data-filtro="copinhos">
+                    <span aria-hidden="true">🍮</span> Copinhos e gelados
+                    <span>5</span>
+                </button>
+                
+                <button type="button" class="chip" data-filtro="festa">
+                    <span aria-hidden="true">🍎</span> Doces de festa
+                    <span>4</span>
+                </button>
+                
+            </div>
+        </div>
+
+        <div class="grade-doces" id="grade-doces">
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Brigadeiro tradicional O clássico de chocolate, enrolado no granulado.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/brigadeiro.jpg"
+                         alt="Brigadeiro tradicional" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                    <span class="selo-tag ">Mais vendido</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Brigadeiro tradicional</h3>
+                    <p class="card-doce__desc">O clássico de chocolate, enrolado no granulado.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,00</s>
+                        <strong>R$ 1,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="brigadeiro" data-nome="Brigadeiro tradicional">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Beijinho de coco Leite condensado, coco ralado e um cravinho no topo.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/beijinho.jpg"
+                         alt="Beijinho de coco" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Beijinho de coco</h3>
+                    <p class="card-doce__desc">Leite condensado, coco ralado e um cravinho no topo.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,00</s>
+                        <strong>R$ 1,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="beijinho" data-nome="Beijinho de coco">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Brigadeiro de leite ninho Branquinho, cremoso e com sabor de leite em pó.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/brigadeiro-ninho.jpg"
+                         alt="Brigadeiro de leite ninho" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-57%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Brigadeiro de leite ninho</h3>
+                    <p class="card-doce__desc">Branquinho, cremoso e com sabor de leite em pó.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,50</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="brigadeiro-ninho" data-nome="Brigadeiro de leite ninho">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Cajuzinho Amendoim moído com chocolate, coberto de açúcar.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/cajuzinho.jpg"
+                         alt="Cajuzinho" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Cajuzinho</h3>
+                    <p class="card-doce__desc">Amendoim moído com chocolate, coberto de açúcar.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,00</s>
+                        <strong>R$ 1,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="cajuzinho" data-nome="Cajuzinho">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Trufa de chocolate Recheio de ganache envolvido em chocolate ao leite.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/trufa.jpg"
+                         alt="Trufa de chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-70%</span>
+                    
+                    <span class="selo-tag ">Novo</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Trufa de chocolate</h3>
+                    <p class="card-doce__desc">Recheio de ganache envolvido em chocolate ao leite.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 5,00</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="trufa" data-nome="Trufa de chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="chocolate" data-busca="Palha italiana Brigadeiro com pedacinhos crocantes de biscoito.">
+
+                <div class="card-doce__imagem cat-chocolate">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/palha-italiana.jpg"
+                         alt="Palha italiana" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Palha italiana</h3>
+                    <p class="card-doce__desc">Brigadeiro com pedacinhos crocantes de biscoito.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="palha-italiana" data-nome="Palha italiana">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Fatia de torta de limão Base crocante, creme de limão e cobertura de merengue.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/torta-limao.jpg"
+                         alt="Fatia de torta de limão" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                    <span class="selo-tag selo-tag--urgente">Últimas unidades</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Fatia de torta de limão</h3>
+                    <p class="card-doce__desc">Base crocante, creme de limão e cobertura de merengue.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="torta-limao" data-nome="Fatia de torta de limão">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Bolo de cenoura com chocolate Fatia fofinha com aquela cobertura de brigadeiro.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/bolo-cenoura.jpg"
+                         alt="Bolo de cenoura com chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-70%</span>
+                    
+                    <span class="selo-tag ">Mais vendido</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Bolo de cenoura com chocolate</h3>
+                    <p class="card-doce__desc">Fatia fofinha com aquela cobertura de brigadeiro.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 5,00</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="bolo-cenoura" data-nome="Bolo de cenoura com chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Fatia de bolo de chocolate Massa molhadinha e recheio cremoso de chocolate.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/bolo-chocolate.jpg"
+                         alt="Fatia de bolo de chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-64%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Fatia de bolo de chocolate</h3>
+                    <p class="card-doce__desc">Massa molhadinha e recheio cremoso de chocolate.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 5,50</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="bolo-chocolate" data-nome="Fatia de bolo de chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Fatia de torta de morango Creme de leite condensado e morangos fresquinhos.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/torta-morango.jpg"
+                         alt="Fatia de torta de morango" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-64%</span>
+                    
+                    <span class="selo-tag selo-tag--urgente">Últimas unidades</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Fatia de torta de morango</h3>
+                    <p class="card-doce__desc">Creme de leite condensado e morangos fresquinhos.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 7,00</s>
+                        <strong>R$ 2,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="torta-morango" data-nome="Fatia de torta de morango">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Pão de mel Massa de mel e especiarias com doce de leite.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/pao-de-mel.jpg"
+                         alt="Pão de mel" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Pão de mel</h3>
+                    <p class="card-doce__desc">Massa de mel e especiarias com doce de leite.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="pao-de-mel" data-nome="Pão de mel">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="bolos" data-busca="Cupcake de baunilha Cobertura de chantilly colorido e confeitos.">
+
+                <div class="card-doce__imagem cat-bolos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/cupcake.jpg"
+                         alt="Cupcake de baunilha" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-64%</span>
+                    
+                    <span class="selo-tag ">Novo</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Cupcake de baunilha</h3>
+                    <p class="card-doce__desc">Cobertura de chantilly colorido e confeitos.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 7,00</s>
+                        <strong>R$ 2,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="cupcake" data-nome="Cupcake de baunilha">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="biscoitos" data-busca="Cookie de gotas de chocolate Crocante por fora, macio por dentro.">
+
+                <div class="card-doce__imagem cat-biscoitos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/cookie.jpg"
+                         alt="Cookie de gotas de chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                    <span class="selo-tag ">Mais vendido</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Cookie de gotas de chocolate</h3>
+                    <p class="card-doce__desc">Crocante por fora, macio por dentro.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="cookie" data-nome="Cookie de gotas de chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="biscoitos" data-busca="Brownie de chocolate Casquinha crocante e miolo bem molhadinho.">
+
+                <div class="card-doce__imagem cat-biscoitos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/brownie.jpg"
+                         alt="Brownie de chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Brownie de chocolate</h3>
+                    <p class="card-doce__desc">Casquinha crocante e miolo bem molhadinho.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="brownie" data-nome="Brownie de chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="biscoitos" data-busca="Casadinho Dois biscoitinhos de maisena com doce de leite no meio.">
+
+                <div class="card-doce__imagem cat-biscoitos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/casadinho.jpg"
+                         alt="Casadinho" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-66%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Casadinho</h3>
+                    <p class="card-doce__desc">Dois biscoitinhos de maisena com doce de leite no meio.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,50</s>
+                        <strong>R$ 1,20</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="casadinho" data-nome="Casadinho">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="biscoitos" data-busca="Paçoca rolha Amendoim e açúcar, do jeito que a vovó fazia.">
+
+                <div class="card-doce__imagem cat-biscoitos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/pacoca.jpg"
+                         alt="Paçoca rolha" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-75%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Paçoca rolha</h3>
+                    <p class="card-doce__desc">Amendoim e açúcar, do jeito que a vovó fazia.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 2,00</s>
+                        <strong>R$ 0,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="pacoca" data-nome="Paçoca rolha">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="copinhos" data-busca="Pudim de leite no copinho Sem furinhos e com muita calda de caramelo.">
+
+                <div class="card-doce__imagem cat-copinhos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/pudim.jpg"
+                         alt="Pudim de leite no copinho" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Pudim de leite no copinho</h3>
+                    <p class="card-doce__desc">Sem furinhos e com muita calda de caramelo.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="pudim" data-nome="Pudim de leite no copinho">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="copinhos" data-busca="Mousse de maracujá Azedinho na medida, com calda de maracujá.">
+
+                <div class="card-doce__imagem cat-copinhos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/mousse-maracuja.jpg"
+                         alt="Mousse de maracujá" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-70%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Mousse de maracujá</h3>
+                    <p class="card-doce__desc">Azedinho na medida, com calda de maracujá.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 5,00</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="mousse-maracuja" data-nome="Mousse de maracujá">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="copinhos" data-busca="Bolo de pote ninho com morango Camadas de bolo, creme de ninho e morangos.">
+
+                <div class="card-doce__imagem cat-copinhos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/bolo-pote.jpg"
+                         alt="Bolo de pote ninho com morango" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-62%</span>
+                    
+                    <span class="selo-tag ">Novo</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Bolo de pote ninho com morango</h3>
+                    <p class="card-doce__desc">Camadas de bolo, creme de ninho e morangos.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 8,00</s>
+                        <strong>R$ 3,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="bolo-pote" data-nome="Bolo de pote ninho com morango">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="copinhos" data-busca="Brigadeiro de colher Aquele de comer com colher, direto do copinho.">
+
+                <div class="card-doce__imagem cat-copinhos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/brigadeiro-colher.jpg"
+                         alt="Brigadeiro de colher" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-70%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Brigadeiro de colher</h3>
+                    <p class="card-doce__desc">Aquele de comer com colher, direto do copinho.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 5,00</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="brigadeiro-colher" data-nome="Brigadeiro de colher">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="copinhos" data-busca="Sacolé de chocolate Geladinho cremoso para o calor do recreio.">
+
+                <div class="card-doce__imagem cat-copinhos">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/sacole.jpg"
+                         alt="Sacolé de chocolate" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-75%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Sacolé de chocolate</h3>
+                    <p class="card-doce__desc">Geladinho cremoso para o calor do recreio.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 4,00</s>
+                        <strong>R$ 1,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="sacole" data-nome="Sacolé de chocolate">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="festa" data-busca="Maçã do amor Maçã coberta com calda vermelhinha e crocante.">
+
+                <div class="card-doce__imagem cat-festa">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/maca-do-amor.jpg"
+                         alt="Maçã do amor" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-67%</span>
+                    
+                    <span class="selo-tag selo-tag--urgente">Últimas unidades</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Maçã do amor</h3>
+                    <p class="card-doce__desc">Maçã coberta com calda vermelhinha e crocante.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 6,00</s>
+                        <strong>R$ 2,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="maca-do-amor" data-nome="Maçã do amor">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="festa" data-busca="Pipoca doce Pipoca caramelizada, saquinho cheio.">
+
+                <div class="card-doce__imagem cat-festa">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/pipoca-doce.jpg"
+                         alt="Pipoca doce" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-62%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Pipoca doce</h3>
+                    <p class="card-doce__desc">Pipoca caramelizada, saquinho cheio.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 4,00</s>
+                        <strong>R$ 1,50</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="pipoca-doce" data-nome="Pipoca doce">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="festa" data-busca="Cocada de forno Coco queimadinho por cima e macio por dentro.">
+
+                <div class="card-doce__imagem cat-festa">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/cocada.jpg"
+                         alt="Cocada de forno" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-71%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Cocada de forno</h3>
+                    <p class="card-doce__desc">Coco queimadinho por cima e macio por dentro.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 3,50</s>
+                        <strong>R$ 1,00</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="cocada" data-nome="Cocada de forno">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+            <article class="card-doce" data-categoria="festa" data-busca="Pé de moleque Amendoim crocante numa barrinha de rapadura.">
+
+                <div class="card-doce__imagem cat-festa">
+                    
+                    <img class="card-doce__foto" src="assets/img/doces/pe-de-moleque.jpg"
+                         alt="Pé de moleque" width="600" height="450" loading="lazy">
+                    
+                    <span class="selo-desconto">-70%</span>
+                    
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>Pé de moleque</h3>
+                    <p class="card-doce__desc">Amendoim crocante numa barrinha de rapadura.</p>
+
+                    <div class="card-doce__preco">
+                        <s>R$ 4,00</s>
+                        <strong>R$ 1,20</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="pe-de-moleque" data-nome="Pé de moleque">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            
+        </div>
+
+        <p class="sem-resultado" id="sem-resultado" hidden>
+            😢 Nenhum doce encontrado. Tente outra busca!
+        </p>
+
+    </div>
+</section>
+
+<section class="secao secao--rosa" id="avaliacoes">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Quem provou, aprovou</h2>
+            <p>Veja o que o pessoal está falando dos nossos doces.</p>
+        </header>
+
+        <div class="avaliacoes">
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Pedi a torta de limão por R$ 2,00 e chegou linda. Já voltei para pedir mais!”</blockquote>
+                <figcaption><strong>Camila S.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“O brigadeiro é igual ao de festa de aniversário. Melhor custo-benefício da escola.”</blockquote>
+                <figcaption><strong>Rafael M.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Comprei para a turma toda no intervalo. Acabou rapidinho, corram!”</blockquote>
+                <figcaption><strong>Beatriz L.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+        </div>
+
+    </div>
+</section>
+
+
+</main>
+
+
+<footer class="rodape">
+    <div class="rodape__interno">
+        <div class="rodape__marca">
+            <img src="assets/img/logo.svg" alt="" width="40" height="40">
+            <div>
+                <strong>Doce Pausa</strong>
+                <p>Doces artesanais feitos com carinho para o seu intervalo.</p>
+            </div>
+        </div>
+        <div>
+            <strong>Atendimento</strong>
+            <p>Segunda a sexta, no intervalo</p>
+        </div>
+        <div>
+            <strong>Retirada</strong>
+            <p>Pague na hora, sem frete</p>
+        </div>
+    </div>
+    <p class="rodape__direitos">© 2026 Doce Pausa · Todos os direitos reservados</p>
+</footer>
+
+
+<div class="toast-area" id="area-toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/loja.js"></script>
+
+</body>
+</html>
