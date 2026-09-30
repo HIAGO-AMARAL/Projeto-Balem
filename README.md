@@ -176,6 +176,26 @@ ser marcadas como golpe pelos navegadores, e o GitHub pode remover o conteúdo. 
 **Diferenças da versão estática:** não existe `/painel` (quem conta os acessos é o GoatCounter) e o vídeo
 entra na hora de gerar o site (`python gerar_estatico.py` copia o arquivo ou usa o link do YouTube).
 
+## Cartaz com QR code 🖨️
+
+O cartaz A4 já está pronto em [`cartaz/cartaz-doce-pausa.pdf`](cartaz/cartaz-doce-pausa.pdf) (para imprimir)
+e em [`cartaz/cartaz-doce-pausa.png`](cartaz/cartaz-doce-pausa.png) (para mandar no WhatsApp). O QR code também
+está sozinho em `cartaz/qrcode.png` e `cartaz/qrcode.svg`, para usar no Canva.
+
+O QR leva para `https://hiago-amaral.github.io/Projeto-Balem/?utm_campaign=cartaz`. O trecho `?utm_campaign=cartaz`
+faz o GoatCounter mostrar, no bloco **Campaigns** do painel, quantas pessoas chegaram pelo cartaz.
+
+Para refazer o cartaz (trocar o doce em destaque, o endereço, etc.), edite as constantes no topo de
+[`gerar_cartaz.py`](gerar_cartaz.py) e rode:
+
+```bash
+pip install segno
+python gerar_cartaz.py
+```
+
+Isso gera `cartaz/cartaz.html`. Para virar PDF, abra no Chrome ou Edge, tecle **Ctrl+P**, escolha
+**Salvar como PDF**, deixe as margens em **Nenhuma** e marque **Gráficos de segundo plano**.
+
 ## Estrutura
 
 ```
@@ -189,6 +209,9 @@ static/video/     coloque aqui o vídeo da equipe
 estatico/         modelos e JavaScript da versão estática
 gerar_estatico.py gera a versão estática na pasta docs/
 docs/             site pronto para o GitHub Pages (gerado, não edite)
+gerar_cartaz.py   gera o cartaz com QR code na pasta cartaz/
+cartaz/           cartaz A4 (PDF, PNG e HTML) e o QR code
+CLAUDE.md         resumo do projeto para o Claude (contexto e pendências)
 ```
 
 ## Aviso
