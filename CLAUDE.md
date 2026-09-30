@@ -34,10 +34,14 @@ Existem **duas versões** do mesmo site:
 - **`docs/` é gerada** por `python gerar_estatico.py`. **Nunca edite `docs/` à mão.**
   Mude os arquivos de origem (`catalogo.py`, `static/`, `estatico/`) e gere de novo.
 - `GOATCOUNTER_CODIGO` fica no topo de `gerar_estatico.py`.
-- **Vídeo da equipe:** em `app.py`, `VIDEO_ARQUIVO` (arquivo em `static/video/`, padrão `phishing.mp4`) ou
-  `VIDEO_YOUTUBE` (link). Depois rode `python gerar_estatico.py`. Sem vídeo, a página mostra um espaço reservado.
+- **Vídeo da equipe:** já colocado em `static/video/phishing.mp4` (30 s, **vertical** 478×850, H.264+AAC, 6,5 MB).
+  Em `app.py`, `VIDEO_ARQUIVO` aponta para ele (ou use `VIDEO_YOUTUBE`). Depois de trocar, rode `python gerar_estatico.py`.
+  `videoinfo.py` lê o tamanho do MP4; vídeo vertical ganha a caixa `.video--vertical` (9:16). Sem vídeo, aparece um espaço reservado.
+  **Cuidado ao testar:** nunca crie/apague arquivos com o nome `phishing.mp4` em testes; use outro nome.
 - **Cartaz com QR code:** `python gerar_cartaz.py` gera `cartaz/` (PDF A4, PNG, HTML, QR em PNG e SVG).
-  Precisa de `pip install segno`. O PDF é gerado com o Edge em modo headless.
+  `python gerar_cartaz.py --banner` usa as fotos de `cartaz/fotos-alta/` (Pexels, 3000 px) para a versão de gráfica
+  (`cartaz/banner-doce-pausa.pdf`, vetorial, proporção A4). Precisa de `pip install segno`.
+  O PDF é gerado com o Edge em modo headless (`--print-to-pdf`, com `--user-data-dir` temporário).
 
 ## Ambiente
 - Windows 11. Python 3.12 instalado via winget; ambiente virtual em `.venv` (não vai para o Git).
@@ -54,10 +58,12 @@ Existem **duas versões** do mesmo site:
 
 ## Estado (30/09/2026)
 Feito e publicado: loja com 25 doces e fotos, carrinho, login falso, página `ops` com dicas, versão estática
-no GitHub Pages, GoatCounter ligado. Cartaz A4 com QR code gerado (PR aberto na branch `feature/cartaz`).
+no GitHub Pages, GoatCounter ligado. Cartaz A4 com QR code e banner de gráfica gerados, e **vídeo da equipe
+incluído** (PR aberto na branch `feature/video-e-banner`; ele já contém o cartaz). O Hiago mandou o banner
+para um amigo imprimir.
 
 **Pendências:**
-1. **Vídeo da equipe:** quando ficar pronto, colocar (arquivo ou YouTube), gerar a versão estática, commitar `docs/` numa branch e abrir PR.
+1. **Juntar o PR** (o Hiago clica em Merge) para o vídeo e o cartaz irem ao ar no GitHub Pages; depois conferir o vídeo no site publicado.
 2. **Testar no celular com 4G** o link do site (ver se algum navegador mostra tela vermelha de "site enganoso") e conferir no painel do GoatCounter se as visitas aparecem.
 3. **Imprimir e colar o cartaz**, com autorização do professor/coordenação, só dentro da escola.
 4. **Depois do evento:** voltar o repositório para privado ou desligar o Pages, para o site sair do ar.

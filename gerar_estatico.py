@@ -27,11 +27,13 @@ from app import (
     VIDEO_ARQUIVO,
     VIDEO_YOUTUBE,
     arquivo_de_video_existe,
+    caminho_do_video,
     foto_do_doce,
     formatar_real,
     link_youtube_embed,
 )
 from catalogo import CATEGORIAS, DOCES
+from videoinfo import eh_vertical
 
 # ---------------------------------------------------------------------------
 # CONTADOR DE ACESSOS (GoatCounter): gratuito, sem cookies e sem dados pessoais.
@@ -78,7 +80,11 @@ def copiar_arquivos():
 def video_para_a_pagina():
     """Mesma escolha do site Flask, mas com caminho relativo (funciona no GitHub Pages)."""
     if arquivo_de_video_existe():
-        return {"tipo": "arquivo", "src": f"assets/video/{VIDEO_ARQUIVO}"}
+        return {
+            "tipo": "arquivo",
+            "src": f"assets/video/{VIDEO_ARQUIVO}",
+            "vertical": eh_vertical(caminho_do_video()),
+        }
     embed = link_youtube_embed(VIDEO_YOUTUBE)
     if embed:
         return {"tipo": "youtube", "src": embed}
@@ -125,7 +131,10 @@ def main():
     fotos = sum(1 for d in doces if d["foto"])
     print(f"Site gerado em docs/  ({len(PAGINAS)} páginas, {len(doces)} doces, {fotos} com foto)")
     video = contexto["video"]
-    print("Vídeo:", video["tipo"] if video else "espaço reservado (nenhum vídeo configurado)")
+    if video:
+        print("Vídeo:", video["tipo"], "(vertical)" if video.get("vertical") else "")
+    else:
+        print("Vídeo: espaço reservado (nenhum vídeo configurado)")
     print("Contador de acessos:", f"GoatCounter ({GOATCOUNTER_CODIGO})" if GOATCOUNTER_CODIGO else "desligado")
 
 

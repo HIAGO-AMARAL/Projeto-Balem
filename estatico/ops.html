@@ -25,9 +25,9 @@
              O vídeo é escolhido em app.py (VIDEO_ARQUIVO / VIDEO_YOUTUBE) e
              entra aqui quando o site é gerado (python gerar_estatico.py).
              ================================================================ -->
-        <div class="video" id="video">
+        <div class="video{% if video and video.vertical %} video--vertical{% endif %}" id="video">
             {% if video and video.tipo == "arquivo" %}
-                <video controls preload="metadata" playsinline src="{{ video.src }}">
+                <video controls preload="metadata" playsinline src="{{ video.src }}#t=0.1">
                     Seu navegador não consegue reproduzir este vídeo.
                 </video>
             {% elif video and video.tipo == "youtube" %}
