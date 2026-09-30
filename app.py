@@ -64,6 +64,21 @@ def formatar_real(valor):
     return f"R$ {texto}"
 
 
+# Fotos dos doces: coloque o arquivo em static/img/doces/ com o MESMO nome do
+# id do doce (ex.: torta-limao.jpg). Sem foto, a loja mostra o emoji do doce.
+EXTENSOES_FOTO = ("jpg", "jpeg", "webp", "png")
+
+
+@app.template_global()
+def foto_do_doce(doce_id):
+    """Caminho (dentro de static/) da foto do doce, ou None se ainda não tem."""
+    for extensao in EXTENSOES_FOTO:
+        caminho = f"img/doces/{doce_id}.{extensao}"
+        if os.path.isfile(os.path.join(app.static_folder, caminho)):
+            return caminho
+    return None
+
+
 def carrinho_atual():
     return session.get("carrinho", {})
 

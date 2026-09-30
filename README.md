@@ -54,6 +54,71 @@ A página educativa já tem o espaço do vídeo pronto. Escolha **uma** das opç
 Sem nenhum dos dois, a página mostra um espaço reservado no lugar do vídeo. O GitHub não aceita
 arquivos com mais de 100 MB, então prefira o YouTube (pode ser "não listado") se o vídeo for pesado.
 
+## Fotos dos doces 📸
+
+Cada doce mostra a foto da pasta `static/img/doces/` quando ela existe. Sem foto, aparece o emoji
+do doce, então dá para ir colocando aos poucos.
+
+1. Salve a foto com **exatamente** o nome da tabela abaixo (também vale `.jpeg`, `.png` ou `.webp`).
+2. Coloque em `static/img/doces/` e recarregue a página (não precisa reiniciar o servidor).
+
+Dicas para a foto vender bem e o projeto não ficar pesado:
+
+- Prefira foto na horizontal, com o doce no centro. O card corta as bordas para caber.
+- Deixe com uns 800 px de largura e menos de 200 KB. Foto de celular vem com vários MB, então
+  reduza antes (o app Fotos do Windows ou o <https://squoosh.app> fazem isso).
+- Use só fotos que vocês tirem ou que tenham licença livre (Pexels, Unsplash, Pixabay).
+
+**Brigadeiros e trufas**
+
+| Doce | Nome do arquivo |
+|---|---|
+| Brigadeiro tradicional | `brigadeiro.jpg` |
+| Beijinho de coco | `beijinho.jpg` |
+| Brigadeiro de leite ninho | `brigadeiro-ninho.jpg` |
+| Cajuzinho | `cajuzinho.jpg` |
+| Trufa de chocolate | `trufa.jpg` |
+| Palha italiana | `palha-italiana.jpg` |
+
+**Bolos e tortas**
+
+| Doce | Nome do arquivo |
+|---|---|
+| Fatia de torta de limão | `torta-limao.jpg` |
+| Bolo de cenoura com chocolate | `bolo-cenoura.jpg` |
+| Fatia de bolo de chocolate | `bolo-chocolate.jpg` |
+| Fatia de torta de morango | `torta-morango.jpg` |
+| Pão de mel | `pao-de-mel.jpg` |
+| Cupcake de baunilha | `cupcake.jpg` |
+
+**Cookies e biscoitos**
+
+| Doce | Nome do arquivo |
+|---|---|
+| Cookie de gotas de chocolate | `cookie.jpg` |
+| Brownie de chocolate | `brownie.jpg` |
+| Casadinho | `casadinho.jpg` |
+| Paçoca rolha | `pacoca.jpg` |
+
+**Copinhos e gelados**
+
+| Doce | Nome do arquivo |
+|---|---|
+| Pudim de leite no copinho | `pudim.jpg` |
+| Mousse de maracujá | `mousse-maracuja.jpg` |
+| Bolo de pote ninho com morango | `bolo-pote.jpg` |
+| Brigadeiro de colher | `brigadeiro-colher.jpg` |
+| Sacolé de chocolate | `sacole.jpg` |
+
+**Doces de festa**
+
+| Doce | Nome do arquivo |
+|---|---|
+| Maçã do amor | `maca-do-amor.jpg` |
+| Pipoca doce | `pipoca-doce.jpg` |
+| Cocada de forno | `cocada.jpg` |
+| Pé de moleque | `pe-de-moleque.jpg` |
+
 ## Painel da apresentação
 
 Em `/painel` (sem link no site) aparecem dois contadores: quantas pessoas passaram pelo login e
@@ -67,7 +132,7 @@ catalogo.py       lista de doces, categorias e preços
 templates/        páginas HTML (base, loja, carrinho, login, educativo, painel)
 static/css/       estilo do site
 static/js/        filtro, busca, carrinho e cronômetro
-static/img/       logo da Doce Pausa
+static/img/       logo da Doce Pausa; fotos dos doces em static/img/doces/
 static/video/     coloque aqui o vídeo da equipe
 ```
 

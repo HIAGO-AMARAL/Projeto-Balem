@@ -29,7 +29,10 @@
                 {% set d = item.doce %}
                 <li class="item-carrinho">
 
-                    <div class="item-carrinho__emoji cat-{{ d.categoria }}" aria-hidden="true">{{ d.emoji }}</div>
+                    {% set foto = foto_do_doce(d.id) %}
+                    <div class="item-carrinho__emoji cat-{{ d.categoria }}" aria-hidden="true">
+                        {% if foto %}<img src="{{ url_for('static', filename=foto) }}" alt="" width="72" height="72">{% else %}{{ d.emoji }}{% endif %}
+                    </div>
 
                     <div class="item-carrinho__info">
                         <h3>{{ d.nome }}</h3>

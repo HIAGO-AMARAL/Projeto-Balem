@@ -75,12 +75,18 @@
             {% for d in doces %}
             <article class="card-doce" data-categoria="{{ d.categoria }}" data-busca="{{ d.nome }} {{ d.descricao }}">
 
+                {% set foto = foto_do_doce(d.id) %}
                 <div class="card-doce__imagem cat-{{ d.categoria }}">
+                    {% if foto %}
+                    <img class="card-doce__foto" src="{{ url_for('static', filename=foto) }}"
+                         alt="{{ d.nome }}" width="600" height="450" loading="lazy">
+                    {% else %}
+                    <span class="card-doce__emoji" aria-hidden="true">{{ d.emoji }}</span>
+                    {% endif %}
                     <span class="selo-desconto">-{{ d.desconto }}%</span>
                     {% if d.tag %}
                     <span class="selo-tag {% if d.tag == 'Últimas unidades' %}selo-tag--urgente{% endif %}">{{ d.tag }}</span>
                     {% endif %}
-                    <span class="card-doce__emoji" aria-hidden="true">{{ d.emoji }}</span>
                 </div>
 
                 <div class="card-doce__corpo">
