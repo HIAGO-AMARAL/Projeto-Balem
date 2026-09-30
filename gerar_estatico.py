@@ -43,7 +43,7 @@ from catalogo import CATEGORIAS, DOCES
 #
 # Deixe vazio ("") para gerar o site sem contador.
 # ---------------------------------------------------------------------------
-GOATCOUNTER_CODIGO = ""
+GOATCOUNTER_CODIGO = "docepausa"
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
 ORIGEM_STATIC = os.path.join(RAIZ, "static")
