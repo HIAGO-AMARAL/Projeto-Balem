@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#FF5C8A">
+
+    <title>{% block titulo %}Doce Pausa · Doces artesanais para o seu intervalo{% endblock %}</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="{% block classe_body %}loja{% endblock %}">
+
+{% block cabecalho %}
+<div class="faixa-promo">
+    <span class="faixa-promo__texto">
+        ⏰ Promoção relâmpago termina em
+        <strong id="contador">15:00</strong>
+        <span class="faixa-promo__extra">· Retirada no intervalo, sem frete!</span>
+    </span>
+</div>
+
+<header class="cabecalho">
+    <div class="cabecalho__interno">
+
+        <a class="marca" href="{{ url_for('index') }}" aria-label="Doce Pausa, página inicial">
+            <img class="marca__logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt="" width="46" height="46">
+            <span class="marca__texto">
+                <span class="marca__nome">Doce <em>Pausa</em></span>
+                <span class="marca__slogan">o intervalo mais gostoso</span>
+            </span>
+        </a>
+
+        <nav class="menu" aria-label="Menu principal">
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('index') }}#doces">Doces</a>
+            <a href="{{ url_for('index') }}#avaliacoes">Avaliações</a>
+        </nav>
+
+        <div class="cabecalho__acoes">
+            {% if logado %}
+                <form method="post" action="{{ url_for('sair') }}" class="form-inline">
+                    <span class="conta">👤 Olá!</span>
+                    <button type="submit" class="botao-link">Sair</button>
+                </form>
+            {% else %}
+                <a class="botao-link" href="{{ url_for('entrar') }}">👤 Entrar</a>
+            {% endif %}
+
+            <a class="botao-carrinho" href="{{ url_for('carrinho') }}" aria-label="Carrinho de compras">
+                <span aria-hidden="true">🛒</span>
+                <span class="botao-carrinho__texto">Carrinho</span>
+                <b class="selo-carrinho" id="contagem-carrinho" {% if not qtd_carrinho %}hidden{% endif %}>{{ qtd_carrinho }}</b>
+            </a>
+        </div>
+
+    </div>
+</header>
+{% endblock %}
+
+<main>
+    {% block conteudo %}{% endblock %}
+</main>
+
+{% block rodape %}
+<footer class="rodape">
+    <div class="rodape__interno">
+        <div class="rodape__marca">
+            <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" width="40" height="40">
+            <div>
+                <strong>Doce Pausa</strong>
+                <p>Doces artesanais feitos com carinho para o seu intervalo.</p>
+            </div>
+        </div>
+        <div>
+            <strong>Atendimento</strong>
+            <p>Segunda a sexta, no intervalo</p>
+        </div>
+        <div>
+            <strong>Retirada</strong>
+            <p>Pague na hora, sem frete</p>
+        </div>
+    </div>
+    <p class="rodape__direitos">© 2026 Doce Pausa · Todos os direitos reservados</p>
+</footer>
+{% endblock %}
+
+<div class="toast-area" id="area-toast" role="status" aria-live="polite">
+    {% for mensagem in get_flashed_messages() %}
+        <div class="toast">{{ mensagem }}</div>
+    {% endfor %}
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

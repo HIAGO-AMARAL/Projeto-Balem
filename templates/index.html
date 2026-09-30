@@ -1,74 +1,142 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block conteudo %}
 
-    <title>Brownie da Fazenda</title>
+<section class="hero">
+    <div class="hero__interno">
 
-</head>
-
-<body>
-
-<header>
-    <h1>Brownie da Fazenda</h1>
-    <p>Brownies artesanais feitos com carinho</p>
-</header>
-
-<div class="container">
-
-    <div class="promocao">
-
-        {% if versao == "A" %}
-
-            <h2>🔥 OFERTA ESPECIAL!</h2>
-
-            <p>
-                Brownie artesanal com uma promoção
-                exclusiva por tempo limitado!
+        <div class="hero__texto">
+            <p class="hero__chamada">🍬 Doces do intervalo</p>
+            <h1>Doce demais para <span class="destaque">pagar caro</span></h1>
+            <p class="hero__sub">
+                Brigadeiro por <strong>R$ 1,00</strong>, torta de limão por
+                <strong>R$ 2,00</strong>, cookie por <strong>R$ 2,00</strong>.
+                Peça agora e retire no intervalo.
             </p>
-
-            <div class="preco">
-                R$ 2,00
+            <div class="hero__botoes">
+                <a class="botao botao--grande" href="#doces">Ver os doces</a>
+                <a class="botao botao--grande botao--contorno" href="{{ url_for('carrinho') }}">Meu carrinho</a>
             </div>
+        </div>
 
-            <p>
-                Aproveite enquanto a oferta está disponível!
-            </p>
-
-        {% else %}
-
-            <h2>Brownie Artesanal</h2>
-
-            <p>
-                Conheça nosso brownie artesanal,
-                preparado com ingredientes selecionados.
-            </p>
-
-            <div class="preco">
-                R$ 5,00
+        <div class="hero__arte" aria-hidden="true">
+            <div class="hero__prato">🍰</div>
+            <span class="flutuante flutuante--1">🍓</span>
+            <span class="flutuante flutuante--2">🧁</span>
+            <span class="flutuante flutuante--3">🍪</span>
+            <span class="flutuante flutuante--4">🍫</span>
+            <div class="hero__etiqueta">
+                <small>Torta de limão</small>
+                <s>R$ 6,00</s>
+                <strong>R$ 2,00</strong>
             </div>
-
-            <p>
-                Um brownie delicioso para qualquer momento.
-            </p>
-
-        {% endif %}
-
-        <br>
-
-        <a href="/produto" class="botao">
-            Ver Brownie
-        </a>
-
-        <div class="aviso">
-            Projeto acadêmico de simulação educativa.
         </div>
 
     </div>
+</section>
 
-</div>
+<section class="confianca" aria-label="Diferenciais da loja">
+    <ul class="confianca__lista">
+        <li><span aria-hidden="true">🎁</span> Sem frete</li>
+        <li><span aria-hidden="true">⭐</span> 4,9 de 1.200 avaliações</li>
+        <li><span aria-hidden="true">🔒</span> Compra 100% segura</li>
+        <li><span aria-hidden="true">🍳</span> Feitos no dia</li>
+    </ul>
+</section>
 
-</body>
-</html>
+<section class="secao" id="doces">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Nossos doces</h2>
+            <p>{{ doces|length }} delícias com preço de promoção. Corra, o estoque é limitado!</p>
+        </header>
+
+        <div class="filtros">
+            <label class="busca">
+                <span class="busca__icone" aria-hidden="true">🔎</span>
+                <input type="search" id="busca" placeholder="Buscar doce…" autocomplete="off" aria-label="Buscar doce">
+            </label>
+
+            <div class="chips" role="group" aria-label="Filtrar por categoria">
+                <button type="button" class="chip is-ativo" data-filtro="todos">
+                    Todos <span>{{ doces|length }}</span>
+                </button>
+                {% for cat in categorias %}
+                <button type="button" class="chip" data-filtro="{{ cat.id }}">
+                    <span aria-hidden="true">{{ cat.emoji }}</span> {{ cat.nome }}
+                    <span>{{ doces|selectattr('categoria', 'equalto', cat.id)|list|length }}</span>
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grade-doces" id="grade-doces">
+            {% for d in doces %}
+            <article class="card-doce" data-categoria="{{ d.categoria }}" data-busca="{{ d.nome }} {{ d.descricao }}">
+
+                <div class="card-doce__imagem cat-{{ d.categoria }}">
+                    <span class="selo-desconto">-{{ d.desconto }}%</span>
+                    {% if d.tag %}
+                    <span class="selo-tag {% if d.tag == 'Últimas unidades' %}selo-tag--urgente{% endif %}">{{ d.tag }}</span>
+                    {% endif %}
+                    <span class="card-doce__emoji" aria-hidden="true">{{ d.emoji }}</span>
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>{{ d.nome }}</h3>
+                    <p class="card-doce__desc">{{ d.descricao }}</p>
+
+                    <div class="card-doce__preco">
+                        <s>{{ d.preco_original|brl }}</s>
+                        <strong>{{ d.preco|brl }}</strong>
+                    </div>
+
+                    <form method="post" action="{{ url_for('adicionar', doce_id=d.id) }}" class="form-adicionar">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            {% endfor %}
+        </div>
+
+        <p class="sem-resultado" id="sem-resultado" hidden>
+            😢 Nenhum doce encontrado. Tente outra busca!
+        </p>
+
+    </div>
+</section>
+
+<section class="secao secao--rosa" id="avaliacoes">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Quem provou, aprovou</h2>
+            <p>Veja o que o pessoal está falando dos nossos doces.</p>
+        </header>
+
+        <div class="avaliacoes">
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Pedi a torta de limão por R$ 2,00 e chegou linda. Já voltei para pedir mais!”</blockquote>
+                <figcaption><strong>Camila S.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“O brigadeiro é igual ao de festa de aniversário. Melhor custo-benefício da escola.”</blockquote>
+                <figcaption><strong>Rafael M.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Comprei para a turma toda no intervalo. Acabou rapidinho, corram!”</blockquote>
+                <figcaption><strong>Beatriz L.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
