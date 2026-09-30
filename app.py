@@ -109,23 +109,32 @@ def detalhes_do_carrinho():
     return itens, resumo
 
 
+def link_youtube_embed(link):
+    """Converte qualquer link do YouTube no endereço de incorporação (ou None)."""
+    achou = re.search(r"(?:youtu\.be/|v=|embed/|shorts/)([\w-]{11})", link or "")
+    if achou:
+        return f"https://www.youtube-nocookie.com/embed/{achou.group(1)}"
+    return None
+
+
+def arquivo_de_video_existe():
+    """True se o arquivo de VIDEO_ARQUIVO está mesmo em static/video/."""
+    if not VIDEO_ARQUIVO:
+        return False
+    return os.path.isfile(os.path.join(app.static_folder, "video", VIDEO_ARQUIVO))
+
+
 def video_configurado():
     """Escolhe o vídeo a mostrar na página educativa (ou None)."""
-    if VIDEO_ARQUIVO:
-        caminho = os.path.join(app.static_folder, "video", VIDEO_ARQUIVO)
-        if os.path.isfile(caminho):
-            return {
-                "tipo": "arquivo",
-                "src": url_for("static", filename=f"video/{VIDEO_ARQUIVO}"),
-            }
+    if arquivo_de_video_existe():
+        return {
+            "tipo": "arquivo",
+            "src": url_for("static", filename=f"video/{VIDEO_ARQUIVO}"),
+        }
 
-    if VIDEO_YOUTUBE:
-        achou = re.search(r"(?:youtu\.be/|v=|embed/|shorts/)([\w-]{11})", VIDEO_YOUTUBE)
-        if achou:
-            return {
-                "tipo": "youtube",
-                "src": f"https://www.youtube-nocookie.com/embed/{achou.group(1)}",
-            }
+    embed = link_youtube_embed(VIDEO_YOUTUBE)
+    if embed:
+        return {"tipo": "youtube", "src": embed}
 
     return None
 

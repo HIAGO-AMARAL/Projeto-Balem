@@ -125,6 +125,57 @@ Dicas para a foto vender bem e o projeto não ficar pesado:
 Em `/painel` (sem link no site) aparecem dois contadores: quantas pessoas passaram pelo login e
 quantas finalizaram a compra. São só números em memória e voltam a zero quando o servidor reinicia.
 
+## Publicar na internet com o GitHub Pages 🌐
+
+A pasta `docs/` é uma **versão estática** do site (sem servidor): o carrinho e o login funcionam
+dentro do navegador de quem visita e nada é enviado para lugar nenhum. Com ela o site fica no ar
+de graça, com um endereço fixo, sem precisar do seu computador ligado. Serve para o QR code do cartaz.
+
+### 1. Gerar o site
+
+```bash
+python gerar_estatico.py
+```
+
+O script refaz a pasta `docs/` inteira a partir do catálogo, das fotos, do CSS e do vídeo. **Não edite
+nada dentro de `docs/`**: mude os arquivos de origem (`catalogo.py`, `static/`, `estatico/`) e rode o
+script de novo. Depois é só fazer o commit da pasta `docs/`.
+
+### 2. Contar os acessos (GoatCounter)
+
+O GitHub Pages não conta visitas sozinho. Use o [GoatCounter](https://www.goatcounter.com): é grátis,
+não usa cookies e não guarda IP nem dado pessoal.
+
+1. Crie uma conta em <https://www.goatcounter.com/signup> e escolha um código (ex.: `docepausa`).
+2. Escreva o código em `GOATCOUNTER_CODIGO`, no topo de [`gerar_estatico.py`](gerar_estatico.py).
+3. Rode `python gerar_estatico.py` de novo e faça o commit.
+4. Veja os números em `https://SEUCODIGO.goatcounter.com`.
+
+No painel, cada página conta uma etapa da simulação:
+
+| Página | O que significa |
+|---|---|
+| `index.html` | pessoas que abriram a loja (os **acessos**) |
+| `entrar.html` | pessoas que chegaram ao login |
+| `ops.html` | pessoas que **caíram** no phishing e viram o vídeo |
+
+Acessos feitos no seu próprio computador (`localhost`) não entram na contagem. Teste pelo celular.
+
+### 3. Publicar
+
+1. No GitHub: **Settings → General → Danger Zone → Change visibility → Make public**.
+   O GitHub Pages grátis só publica repositórios públicos. Não há nada secreto no código.
+2. **Settings → Pages → Build and deployment**: em *Source* escolha **Deploy from a branch**,
+   depois a branch `main` e a pasta **`/docs`**, e salve.
+3. Depois de 1 a 2 minutos o site aparece em algo como
+   `https://hiago-amaral.github.io/Projeto-Balem/`. Esse é o endereço do QR code.
+
+Antes de imprimir o cartaz, abra o link em alguns celulares e no Chrome. Páginas com login falso podem
+ser marcadas como golpe pelos navegadores, e o GitHub pode remover o conteúdo. Avise o professor.
+
+**Diferenças da versão estática:** não existe `/painel` (quem conta os acessos é o GoatCounter) e o vídeo
+entra na hora de gerar o site (`python gerar_estatico.py` copia o arquivo ou usa o link do YouTube).
+
 ## Estrutura
 
 ```
@@ -135,10 +186,14 @@ static/css/       estilo do site
 static/js/        filtro, busca, carrinho e cronômetro
 static/img/       logo da Doce Pausa; fotos dos doces em static/img/doces/
 static/video/     coloque aqui o vídeo da equipe
+estatico/         modelos e JavaScript da versão estática
+gerar_estatico.py gera a versão estática na pasta docs/
+docs/             site pronto para o GitHub Pages (gerado, não edite)
 ```
 
 ## Aviso
 
 Este é um projeto escolar de conscientização. Use só com autorização do professor e dentro da escola.
-Evite publicar o site na internet: páginas com formulário de login falso costumam ser marcadas como golpe
-pelos navegadores e pelas hospedagens.
+Ao publicar na internet, teste antes: páginas com formulário de login falso costumam ser marcadas como golpe
+pelos navegadores e pelas hospedagens. Depois do evento, tire o site do ar (volte o repositório para privado
+ou desligue o Pages).

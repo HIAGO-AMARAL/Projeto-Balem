@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<section class="hero">
+    <div class="hero__interno">
+
+        <div class="hero__texto">
+            <p class="hero__chamada">🍬 Doces do intervalo</p>
+            <h1>Doce demais para <span class="destaque">pagar caro</span></h1>
+            <p class="hero__sub">
+                Brigadeiro por <strong>R$ 1,00</strong>, torta de limão por
+                <strong>R$ 2,00</strong>, cookie por <strong>R$ 2,00</strong>.
+                Peça agora e retire no intervalo.
+            </p>
+            <div class="hero__botoes">
+                <a class="botao botao--grande" href="#doces">Ver os doces</a>
+                <a class="botao botao--grande botao--contorno" href="carrinho.html">Meu carrinho</a>
+            </div>
+        </div>
+
+        <div class="hero__arte" aria-hidden="true">
+            <div class="hero__prato">🍰</div>
+            <span class="flutuante flutuante--1">🍓</span>
+            <span class="flutuante flutuante--2">🧁</span>
+            <span class="flutuante flutuante--3">🍪</span>
+            <span class="flutuante flutuante--4">🍫</span>
+            <div class="hero__etiqueta">
+                <small>Torta de limão</small>
+                <s>R$ 6,00</s>
+                <strong>R$ 2,00</strong>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="confianca" aria-label="Diferenciais da loja">
+    <ul class="confianca__lista">
+        <li><span aria-hidden="true">🎁</span> Sem frete</li>
+        <li><span aria-hidden="true">⭐</span> 4,9 de 1.200 avaliações</li>
+        <li><span aria-hidden="true">🔒</span> Compra 100% segura</li>
+        <li><span aria-hidden="true">🍳</span> Feitos no dia</li>
+    </ul>
+</section>
+
+<section class="secao" id="doces">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Nossos doces</h2>
+            <p>{{ doces|length }} delícias com preço de promoção. Corra, o estoque é limitado!</p>
+        </header>
+
+        <div class="filtros">
+            <label class="busca">
+                <span class="busca__icone" aria-hidden="true">🔎</span>
+                <input type="search" id="busca" placeholder="Buscar doce…" autocomplete="off" aria-label="Buscar doce">
+            </label>
+
+            <div class="chips" role="group" aria-label="Filtrar por categoria">
+                <button type="button" class="chip is-ativo" data-filtro="todos">
+                    Todos <span>{{ doces|length }}</span>
+                </button>
+                {% for cat in categorias %}
+                <button type="button" class="chip" data-filtro="{{ cat.id }}">
+                    <span aria-hidden="true">{{ cat.emoji }}</span> {{ cat.nome }}
+                    <span>{{ doces|selectattr('categoria', 'equalto', cat.id)|list|length }}</span>
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grade-doces" id="grade-doces">
+            {% for d in doces %}
+            <article class="card-doce" data-categoria="{{ d.categoria }}" data-busca="{{ d.nome }} {{ d.descricao }}">
+
+                <div class="card-doce__imagem cat-{{ d.categoria }}">
+                    {% if d.foto %}
+                    <img class="card-doce__foto" src="assets/{{ d.foto }}"
+                         alt="{{ d.nome }}" width="600" height="450" loading="lazy">
+                    {% else %}
+                    <span class="card-doce__emoji" aria-hidden="true">{{ d.emoji }}</span>
+                    {% endif %}
+                    <span class="selo-desconto">-{{ d.desconto }}%</span>
+                    {% if d.tag %}
+                    <span class="selo-tag {% if d.tag == 'Últimas unidades' %}selo-tag--urgente{% endif %}">{{ d.tag }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="card-doce__corpo">
+                    <h3>{{ d.nome }}</h3>
+                    <p class="card-doce__desc">{{ d.descricao }}</p>
+
+                    <div class="card-doce__preco">
+                        <s>{{ d.preco_original|brl }}</s>
+                        <strong>{{ d.preco|brl }}</strong>
+                    </div>
+
+                    <form class="form-adicionar" data-doce="{{ d.id }}" data-nome="{{ d.nome }}">
+                        <button type="submit" class="botao botao--cheio">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+
+            </article>
+            {% endfor %}
+        </div>
+
+        <p class="sem-resultado" id="sem-resultado" hidden>
+            😢 Nenhum doce encontrado. Tente outra busca!
+        </p>
+
+    </div>
+</section>
+
+<section class="secao secao--rosa" id="avaliacoes">
+    <div class="secao__interno">
+
+        <header class="secao__titulo">
+            <h2>Quem provou, aprovou</h2>
+            <p>Veja o que o pessoal está falando dos nossos doces.</p>
+        </header>
+
+        <div class="avaliacoes">
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Pedi a torta de limão por R$ 2,00 e chegou linda. Já voltei para pedir mais!”</blockquote>
+                <figcaption><strong>Camila S.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“O brigadeiro é igual ao de festa de aniversário. Melhor custo-benefício da escola.”</blockquote>
+                <figcaption><strong>Rafael M.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+            <figure class="avaliacao">
+                <div class="avaliacao__estrelas" aria-label="5 estrelas">★★★★★</div>
+                <blockquote>“Comprei para a turma toda no intervalo. Acabou rapidinho, corram!”</blockquote>
+                <figcaption><strong>Beatriz L.</strong> <span>✔ Compra verificada</span></figcaption>
+            </figure>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
