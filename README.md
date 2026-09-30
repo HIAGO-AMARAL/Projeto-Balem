@@ -1,6 +1,6 @@
 # Doce Pausa 🧁
 
-Simulação de **phishing** feita para a nota bimestral de **segurança cibernética**.
+Simulação de **phishing** feita para a nota bimestral de **segurança da informação**.
 
 A ideia é uma loja de doces com preços absurdos (torta de limão de R$ 6,00 por R$ 2,00).
 Quando a pessoa clica em **Finalizar compra**, ela cai numa página com o vídeo da equipe

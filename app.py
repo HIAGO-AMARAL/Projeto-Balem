@@ -1,6 +1,6 @@
 """Doce Pausa: loja de doces falsa usada numa simulação de phishing.
 
-Projeto escolar de segurança cibernética. A "loja" vende doces com preços
+Projeto escolar de segurança da informação. A "loja" vende doces com preços
 absurdos para atrair o clique. Quando a pessoa finaliza a compra, ela vê um
 vídeo explicando que caiu num phishing e como se proteger.
 
