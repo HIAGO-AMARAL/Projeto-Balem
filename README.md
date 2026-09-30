@@ -56,11 +56,12 @@ arquivos com mais de 100 MB, então prefira o YouTube (pode ser "não listado") 
 
 ## Fotos dos doces 📸
 
-Cada doce mostra a foto da pasta `static/img/doces/` quando ela existe. Sem foto, aparece o emoji
-do doce, então dá para ir colocando aos poucos.
+As 25 fotos já estão em `static/img/doces/`. Vieram do [Pexels](https://www.pexels.com) (licença livre)
+e os créditos estão em [`static/img/doces/CREDITOS.md`](static/img/doces/CREDITOS.md).
 
-1. Salve a foto com **exatamente** o nome da tabela abaixo (também vale `.jpeg`, `.png` ou `.webp`).
-2. Coloque em `static/img/doces/` e recarregue a página (não precisa reiniciar o servidor).
+Para **trocar** uma foto, salve a nova com o mesmo nome do arquivo da tabela abaixo (também vale
+`.jpeg`, `.png` ou `.webp`) e recarregue a página, sem reiniciar o servidor. Se apagar a foto de um
+doce, a loja volta a mostrar o emoji dele.
 
 Dicas para a foto vender bem e o projeto não ficar pesado:
 
