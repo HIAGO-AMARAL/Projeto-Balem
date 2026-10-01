@@ -11,3 +11,6 @@ venv/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Banner em PNG (pesado, refazer com gerar_cartaz.py --banner)
+cartaz/banner-doce-pausa.png

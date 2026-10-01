@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cartaz Doce Pausa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 210mm; height: 297mm; }
+    body {
+        font-family: "Nunito", "Segoe UI", sans-serif;
+        color: #3A2618;
+        background: #FFF7EC;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .folha {
+        position: relative;
+        width: 210mm;
+        height: 297mm;
+        padding: 11mm 13mm 0;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 8% 6%, rgba(255, 92, 138, .22), transparent 34%),
+            radial-gradient(circle at 96% 42%, rgba(255, 216, 77, .40), transparent 32%),
+            radial-gradient(circle at 4% 70%, rgba(185, 162, 255, .22), transparent 30%),
+            #FFF7EC;
+    }
+    h1, h2, .fredoka { font-family: "Fredoka", "Trebuchet MS", sans-serif; }
+
+    /* ---------- topo ---------- */
+    .topo { display: flex; align-items: center; gap: 4mm; }
+    .topo svg { width: 19mm; height: 19mm; filter: drop-shadow(0 1.2mm 1.6mm rgba(224, 53, 107, .35)); }
+    .marca { font: 700 13mm/1 "Fredoka", sans-serif; color: #4B2A1B; }
+    .marca em { font-style: normal; color: #E0356B; }
+    .slogan { margin-top: 1mm; font-weight: 800; font-size: 3.6mm; letter-spacing: .3mm; color: #7C6556; }
+
+    /* ---------- chamada ---------- */
+    .chamada { margin-top: 5mm; text-align: center; }
+    .pilula {
+        display: inline-block;
+        padding: 1.6mm 6mm;
+        font-weight: 800;
+        font-size: 4.2mm;
+        color: #E0356B;
+        background: #FFE6EE;
+        border-radius: 10mm;
+    }
+    .chamada h1 { margin-top: 3mm; font-size: 15mm; line-height: 1.02; color: #4B2A1B; }
+    .chamada h1 span { color: #E0356B; background: linear-gradient(transparent 62%, #FFD84D 62%); padding: 0 1.5mm; }
+
+    .preco {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6mm;
+        margin-top: 3mm;
+    }
+    .preco .de { font: 600 8mm "Fredoka", sans-serif; color: #7C6556; text-decoration: line-through; text-decoration-thickness: .9mm; text-decoration-color: #E0356B; }
+    .preco .por { font: 700 31mm/1 "Fredoka", sans-serif; color: #E0356B; text-shadow: 1.2mm 1.2mm 0 #FFD84D; letter-spacing: -.5mm; }
+    .selo {
+        position: absolute;
+        right: -1mm;
+        top: -10mm;
+        display: grid;
+        place-items: center;
+        width: 24mm;
+        height: 24mm;
+        font: 700 7.6mm "Fredoka", sans-serif;
+        color: #fff;
+        background: #4B2A1B;
+        border-radius: 50%;
+        transform: rotate(12deg);
+        box-shadow: 0 1.4mm 0 #FFD84D;
+    }
+
+    /* ---------- fotos ---------- */
+    .fotos {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 5mm;
+        height: 72mm;
+        margin-top: 5mm;
+    }
+    .foto {
+        position: relative;
+        border-radius: 7mm;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 3mm 6mm -2.5mm rgba(75, 42, 27, .5);
+    }
+    .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .foto--grande { transform: rotate(-1.6deg); border: 2.2mm solid #fff; }
+    .foto--grande .legenda { font-size: 5.6mm; padding: 2mm 5mm; left: 3mm; bottom: 3mm; }
+    .grade { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4mm; transform: rotate(1.4deg); }
+    .grade .foto { border: 1.6mm solid #fff; border-radius: 5mm; }
+    .legenda {
+        position: absolute;
+        left: 2mm;
+        bottom: 2mm;
+        padding: 1mm 3mm;
+        font: 700 4.3mm "Fredoka", sans-serif;
+        white-space: nowrap;
+        color: #fff;
+        background: #E0356B;
+        border-radius: 4mm;
+    }
+    .legenda s { font-weight: 500; opacity: .75; margin-right: 1mm; font-size: .78em; }
+
+    /* ---------- vantagens ---------- */
+    .faixa {
+        margin: 5mm -13mm 0;
+        padding: 2.4mm 0;
+        text-align: center;
+        font: 600 5.4mm "Fredoka", sans-serif;
+        color: #FFD84D;
+        background: #4B2A1B;
+    }
+    .faixa b { color: #fff; }
+
+    /* ---------- QR code ---------- */
+    .qr {
+        display: flex;
+        align-items: center;
+        gap: 9mm;
+        margin-top: 5mm;
+        padding: 5mm 9mm;
+        background: #fff;
+        border: .8mm dashed #E0356B;
+        border-radius: 9mm;
+        box-shadow: 0 3mm 6mm -3mm rgba(75, 42, 27, .45);
+    }
+    .qr__codigo { flex: 0 0 62mm; width: 62mm; height: 62mm; }
+    .qr__codigo svg { width: 100%; height: 100%; display: block; }
+    .qr__texto h2 { font-size: 13.5mm; line-height: 1.02; color: #4B2A1B; }
+    .qr__texto h2 span { color: #E0356B; }
+    .qr__texto p { margin-top: 3mm; font-weight: 700; font-size: 4.8mm; color: #7C6556; }
+    .qr__passos { margin-top: 3.5mm; font-weight: 800; font-size: 4.6mm; color: #4B2A1B; }
+    .qr__passos li { list-style: none; margin-top: 1.2mm; }
+    .qr__passos li::before { content: "📱 "; }
+    .qr__url { margin-top: 3.5mm; font-weight: 800; font-size: 3.7mm; color: #E0356B; word-break: break-all; }
+
+    /* ---------- rodapé ---------- */
+    .rodape {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        display: flex;
+        justify-content: center;
+        gap: 9mm;
+        padding: 3.4mm 0;
+        font-weight: 800;
+        font-size: 4mm;
+        color: #F8E7D3;
+        background: #E0356B;
+    }
+    .rodape span { color: #fff; }
+</style>
+</head>
+<body>
+<div class="folha">
+
+    <div class="topo">
+        {{ logo_svg }}
+        <div>
+            <div class="marca">Doce <em>Pausa</em></div>
+            <div class="slogan">O INTERVALO MAIS GOSTOSO</div>
+        </div>
+    </div>
+
+    <div class="chamada">
+        <span class="pilula">🍬 Doces do intervalo</span>
+        <h1>{{ destaque.nome }} <span>por só</span></h1>
+        <div class="preco">
+            <span class="de">de R$ {{ destaque.original }}</span>
+            <span class="por">R$ {{ destaque.preco }}</span>
+            <span class="selo">-{{ destaque.desconto }}%</span>
+        </div>
+    </div>
+
+    <div class="fotos">
+        <div class="foto foto--grande">
+            <img src="{{ destaque.foto }}" alt="{{ destaque.nome }}">
+            <span class="legenda"><s>R$ {{ destaque.original }}</s> R$ {{ destaque.preco }}</span>
+        </div>
+        <div class="grade">
+            {% for d in extras %}
+            <div class="foto">
+                <img src="{{ d.foto }}" alt="{{ d.nome }}">
+                <span class="legenda">R$ {{ d.preco }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="faixa">⏰ Promoção por tempo limitado · <b>Últimas unidades!</b></div>
+
+    <div class="qr">
+        <div class="qr__codigo">{{ qr_svg }}</div>
+        <div class="qr__texto">
+            <h2>Escaneie e <span>garanta o seu!</span></h2>
+            <p>Retirada no intervalo, sem frete.</p>
+            <ul class="qr__passos">
+                <li>Abra a câmera do celular</li>
+                <li>Aponte para o QR code</li>
+                <li>Escolha seus doces</li>
+            </ul>
+            <div class="qr__url">{{ url_curta }}</div>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div>⭐ <span>4,9</span> · +1.200 avaliações</div>
+        <div>🔒 <span>Compra 100% segura</span></div>
+        <div>🎁 <span>Sem frete</span></div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -28,6 +28,7 @@ from flask import (
 )
 
 from catalogo import CATEGORIAS, DOCES, DOCES_POR_ID
+from videoinfo import eh_vertical
 
 # ---------------------------------------------------------------------------
 # VÍDEO DA EQUIPE: é aqui que se coloca o vídeo que vai passar no final.
@@ -117,11 +118,14 @@ def link_youtube_embed(link):
     return None
 
 
+def caminho_do_video():
+    """Caminho do arquivo de VIDEO_ARQUIVO em static/video/ (existindo ou não)."""
+    return os.path.join(app.static_folder, "video", VIDEO_ARQUIVO or "")
+
+
 def arquivo_de_video_existe():
     """True se o arquivo de VIDEO_ARQUIVO está mesmo em static/video/."""
-    if not VIDEO_ARQUIVO:
-        return False
-    return os.path.isfile(os.path.join(app.static_folder, "video", VIDEO_ARQUIVO))
+    return bool(VIDEO_ARQUIVO) and os.path.isfile(caminho_do_video())
 
 
 def video_configurado():
@@ -130,6 +134,7 @@ def video_configurado():
         return {
             "tipo": "arquivo",
             "src": url_for("static", filename=f"video/{VIDEO_ARQUIVO}"),
+            "vertical": eh_vertical(caminho_do_video()),
         }
 
     embed = link_youtube_embed(VIDEO_YOUTUBE)

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cartaz Doce Pausa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 210mm; height: 297mm; }
+    body {
+        font-family: "Nunito", "Segoe UI", sans-serif;
+        color: #3A2618;
+        background: #FFF7EC;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .folha {
+        position: relative;
+        width: 210mm;
+        height: 297mm;
+        padding: 11mm 13mm 0;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 8% 6%, rgba(255, 92, 138, .22), transparent 34%),
+            radial-gradient(circle at 96% 42%, rgba(255, 216, 77, .40), transparent 32%),
+            radial-gradient(circle at 4% 70%, rgba(185, 162, 255, .22), transparent 30%),
+            #FFF7EC;
+    }
+    h1, h2, .fredoka { font-family: "Fredoka", "Trebuchet MS", sans-serif; }
+
+    /* ---------- topo ---------- */
+    .topo { display: flex; align-items: center; gap: 4mm; }
+    .topo svg { width: 19mm; height: 19mm; filter: drop-shadow(0 1.2mm 1.6mm rgba(224, 53, 107, .35)); }
+    .marca { font: 700 13mm/1 "Fredoka", sans-serif; color: #4B2A1B; }
+    .marca em { font-style: normal; color: #E0356B; }
+    .slogan { margin-top: 1mm; font-weight: 800; font-size: 3.6mm; letter-spacing: .3mm; color: #7C6556; }
+
+    /* ---------- chamada ---------- */
+    .chamada { margin-top: 5mm; text-align: center; }
+    .pilula {
+        display: inline-block;
+        padding: 1.6mm 6mm;
+        font-weight: 800;
+        font-size: 4.2mm;
+        color: #E0356B;
+        background: #FFE6EE;
+        border-radius: 10mm;
+    }
+    .chamada h1 { margin-top: 3mm; font-size: 15mm; line-height: 1.02; color: #4B2A1B; }
+    .chamada h1 span { color: #E0356B; background: linear-gradient(transparent 62%, #FFD84D 62%); padding: 0 1.5mm; }
+
+    .preco {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6mm;
+        margin-top: 3mm;
+    }
+    .preco .de { font: 600 8mm "Fredoka", sans-serif; color: #7C6556; text-decoration: line-through; text-decoration-thickness: .9mm; text-decoration-color: #E0356B; }
+    .preco .por { font: 700 31mm/1 "Fredoka", sans-serif; color: #E0356B; text-shadow: 1.2mm 1.2mm 0 #FFD84D; letter-spacing: -.5mm; }
+    .selo {
+        position: absolute;
+        right: -1mm;
+        top: -10mm;
+        display: grid;
+        place-items: center;
+        width: 24mm;
+        height: 24mm;
+        font: 700 7.6mm "Fredoka", sans-serif;
+        color: #fff;
+        background: #4B2A1B;
+        border-radius: 50%;
+        transform: rotate(12deg);
+        box-shadow: 0 1.4mm 0 #FFD84D;
+    }
+
+    /* ---------- fotos ---------- */
+    .fotos {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 5mm;
+        height: 72mm;
+        margin-top: 5mm;
+    }
+    .foto {
+        position: relative;
+        border-radius: 7mm;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 3mm 6mm -2.5mm rgba(75, 42, 27, .5);
+    }
+    .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .foto--grande { transform: rotate(-1.6deg); border: 2.2mm solid #fff; }
+    .foto--grande .legenda { font-size: 5.6mm; padding: 2mm 5mm; left: 3mm; bottom: 3mm; }
+    .grade { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4mm; transform: rotate(1.4deg); }
+    .grade .foto { border: 1.6mm solid #fff; border-radius: 5mm; }
+    .legenda {
+        position: absolute;
+        left: 2mm;
+        bottom: 2mm;
+        padding: 1mm 3mm;
+        font: 700 4.3mm "Fredoka", sans-serif;
+        white-space: nowrap;
+        color: #fff;
+        background: #E0356B;
+        border-radius: 4mm;
+    }
+    .legenda s { font-weight: 500; opacity: .75; margin-right: 1mm; font-size: .78em; }
+
+    /* ---------- vantagens ---------- */
+    .faixa {
+        margin: 5mm -13mm 0;
+        padding: 2.4mm 0;
+        text-align: center;
+        font: 600 5.4mm "Fredoka", sans-serif;
+        color: #FFD84D;
+        background: #4B2A1B;
+    }
+    .faixa b { color: #fff; }
+
+    /* ---------- QR code ---------- */
+    .qr {
+        display: flex;
+        align-items: center;
+        gap: 9mm;
+        margin-top: 5mm;
+        padding: 5mm 9mm;
+        background: #fff;
+        border: .8mm dashed #E0356B;
+        border-radius: 9mm;
+        box-shadow: 0 3mm 6mm -3mm rgba(75, 42, 27, .45);
+    }
+    .qr__codigo { flex: 0 0 62mm; width: 62mm; height: 62mm; }
+    .qr__codigo svg { width: 100%; height: 100%; display: block; }
+    .qr__texto h2 { font-size: 13.5mm; line-height: 1.02; color: #4B2A1B; }
+    .qr__texto h2 span { color: #E0356B; }
+    .qr__texto p { margin-top: 3mm; font-weight: 700; font-size: 4.8mm; color: #7C6556; }
+    .qr__passos { margin-top: 3.5mm; font-weight: 800; font-size: 4.6mm; color: #4B2A1B; }
+    .qr__passos li { list-style: none; margin-top: 1.2mm; }
+    .qr__passos li::before { content: "📱 "; }
+    .qr__url { margin-top: 3.5mm; font-weight: 800; font-size: 3.7mm; color: #E0356B; word-break: break-all; }
+
+    /* ---------- rodapé ---------- */
+    .rodape {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        display: flex;
+        justify-content: center;
+        gap: 9mm;
+        padding: 3.4mm 0;
+        font-weight: 800;
+        font-size: 4mm;
+        color: #F8E7D3;
+        background: #E0356B;
+    }
+    .rodape span { color: #fff; }
+</style>
+</head>
+<body>
+<div class="folha">
+
+    <div class="topo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Doce Pausa">
+  <title>Doce Pausa</title>
+  <!-- fundo -->
+  <circle cx="32" cy="32" r="32" fill="#FF5C8A"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 3.5"/>
+
+  <!-- forminha -->
+  <path d="M17.5 35 H46.5 L42.6 53 Q42.2 55 40.2 55 H23.8 Q21.8 55 21.4 53 Z" fill="#7A4A33"/>
+  <path d="M25 37 L26.6 54 M32 37 V54 M39 37 L37.4 54" stroke="#4B2A1B" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+
+  <!-- cobertura em três camadas -->
+  <path d="M14.5 36 Q13 28.5 21 27.5 Q20 24.5 24 23 Q49 22 43 27.5 Q51 28.5 49.5 36 Q41 40 32 40 Q23 40 14.5 36 Z" fill="#FFF4DE"/>
+  <path d="M19 27.6 Q18.5 21.5 25.5 20.5 Q25.5 15.5 32 14.5 Q38.5 15.5 38.5 20.5 Q45.5 21.5 45 27.6 Q32 31 19 27.6 Z" fill="#FFE3EC"/>
+  <path d="M24.5 20.8 Q25 16.5 32 15.6 Q39 16.5 39.5 20.8 Q32 24 24.5 20.8 Z" fill="#FFF4DE"/>
+
+  <!-- cereja -->
+  <path d="M32.5 10.5 Q35 5.5 40 5" fill="none" stroke="#3E9B62" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="12.5" r="4.6" fill="#E5233F"/>
+  <circle cx="30.4" cy="11" r="1.3" fill="#FFFFFF" opacity=".75"/>
+
+  <!-- confeitos -->
+  <rect x="21" y="30.5" width="4" height="1.7" rx=".85" fill="#FF5C8A" transform="rotate(-25 23 31.3)"/>
+  <rect x="38" y="31.5" width="4" height="1.7" rx=".85" fill="#6FD3B5" transform="rotate(20 40 32.3)"/>
+  <rect x="29.5" y="33.6" width="4" height="1.7" rx=".85" fill="#FFD84D" transform="rotate(-8 31.5 34.4)"/>
+  <rect x="45" y="32.6" width="3.4" height="1.5" rx=".75" fill="#B9A2FF" transform="rotate(-30 46.7 33.3)"/>
+  <rect x="16.8" y="32.8" width="3.4" height="1.5" rx=".75" fill="#B9A2FF" transform="rotate(25 18.5 33.5)"/>
+</svg>
+
+        <div>
+            <div class="marca">Doce <em>Pausa</em></div>
+            <div class="slogan">O INTERVALO MAIS GOSTOSO</div>
+        </div>
+    </div>
+
+    <div class="chamada">
+        <span class="pilula">🍬 Doces do intervalo</span>
+        <h1>Torta de limão <span>por só</span></h1>
+        <div class="preco">
+            <span class="de">de R$ 6,00</span>
+            <span class="por">R$ 2,00</span>
+            <span class="selo">-67%</span>
+        </div>
+    </div>
+
+    <div class="fotos">
+        <div class="foto foto--grande">
+            <img src="fotos-alta/torta-limao.jpg" alt="Torta de limão">
+            <span class="legenda"><s>R$ 6,00</s> R$ 2,00</span>
+        </div>
+        <div class="grade">
+            
+            <div class="foto">
+                <img src="fotos-alta/brigadeiro.jpg" alt="Brigadeiro tradicional">
+                <span class="legenda">R$ 1,00</span>
+            </div>
+            
+            <div class="foto">
+                <img src="fotos-alta/cookie.jpg" alt="Cookie de gotas de chocolate">
+                <span class="legenda">R$ 2,00</span>
+            </div>
+            
+            <div class="foto">
+                <img src="fotos-alta/cupcake.jpg" alt="Cupcake de baunilha">
+                <span class="legenda">R$ 2,50</span>
+            </div>
+            
+            <div class="foto">
+                <img src="fotos-alta/pudim.jpg" alt="Pudim de leite no copinho">
+                <span class="legenda">R$ 2,00</span>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="faixa">⏰ Promoção por tempo limitado · <b>Últimas unidades!</b></div>
+
+    <div class="qr">
+        <div class="qr__codigo"><svg viewBox="0 0 490 490" class="segno"><g transform="scale(10)"><path fill="#fff" d="M0 0h49v49h-49z"/><path class="qrline" stroke="#2b170e" d="M4 4.5h7m6 0h3m2 0h1m2 0h1m6 0h2m1 0h2m1 0h7m-41 1h1m5 0h1m1 0h3m2 0h2m3 0h1m1 0h2m1 0h1m2 0h1m1 0h1m5 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h4m4 0h5m3 0h1m1 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h3m1 0h3m2 0h1m2 0h2m1 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m2 0h1m1 0h2m3 0h1m2 0h7m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m5 0h2m1 0h2m2 0h8m1 0h1m2 0h1m2 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-32 1h4m2 0h1m1 0h3m2 0h3m4 0h1m1 0h2m-32 1h3m1 0h2m2 0h2m3 0h1m2 0h1m2 0h1m3 0h1m1 0h1m1 0h4m6 0h2m-36 1h2m6 0h1m1 0h1m4 0h1m2 0h1m1 0h1m4 0h8m1 0h3m-40 1h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h7m1 0h4m1 0h1m1 0h1m4 0h1m2 0h2m-40 1h2m2 0h2m2 0h1m1 0h1m1 0h3m1 0h3m1 0h1m2 0h3m1 0h1m4 0h5m2 0h1m-38 1h1m3 0h1m1 0h1m1 0h4m1 0h2m2 0h1m3 0h1m1 0h2m2 0h1m1 0h2m2 0h1m1 0h2m-37 1h1m2 0h1m1 0h2m3 0h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m-37 1h5m1 0h1m1 0h1m5 0h2m4 0h2m1 0h2m1 0h3m1 0h2m1 0h1m2 0h1m-39 1h1m4 0h1m3 0h2m2 0h1m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m5 0h1m-41 1h1m1 0h2m1 0h3m3 0h4m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m5 0h1m2 0h2m-41 1h1m1 0h4m2 0h4m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h1m2 0h1m1 0h1m2 0h1m-39 1h9m1 0h1m1 0h2m2 0h5m4 0h4m1 0h1m1 0h1m3 0h2m-36 1h3m2 0h2m5 0h1m2 0h1m3 0h3m1 0h5m1 0h1m3 0h1m1 0h3m-37 1h2m1 0h1m3 0h2m1 0h2m1 0h1m1 0h2m2 0h1m1 0h4m5 0h2m1 0h2m2 0h1m-37 1h1m2 0h1m1 0h3m1 0h2m1 0h2m1 0h1m1 0h3m3 0h14m-40 1h1m2 0h3m4 0h2m5 0h3m2 0h2m1 0h1m1 0h2m3 0h1m2 0h1m2 0h1m-40 1h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h7m1 0h4m2 0h5m2 0h1m1 0h2m-40 1h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m1 0h2m3 0h2m2 0h1m7 0h3m-37 1h1m3 0h8m2 0h2m2 0h2m1 0h5m2 0h2m1 0h1m2 0h2m1 0h1m-40 1h2m2 0h2m3 0h4m6 0h1m3 0h1m1 0h1m4 0h2m1 0h2m1 0h1m1 0h2m-40 1h1m2 0h1m3 0h1m1 0h1m2 0h1m1 0h2m2 0h2m3 0h1m1 0h1m1 0h1m2 0h4m1 0h2m-38 1h2m1 0h2m1 0h3m1 0h2m4 0h3m3 0h2m1 0h1m2 0h1m1 0h4m1 0h3m2 0h1m-37 1h2m1 0h1m1 0h3m1 0h1m1 0h2m1 0h5m1 0h1m3 0h1m3 0h2m1 0h1m2 0h1m-39 1h1m2 0h1m1 0h5m2 0h3m1 0h3m1 0h1m1 0h3m1 0h3m4 0h3m2 0h1m-36 1h1m1 0h1m2 0h1m3 0h3m1 0h2m1 0h1m1 0h1m2 0h1m4 0h1m4 0h1m2 0h2m-38 1h3m1 0h3m2 0h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h12m-33 1h1m1 0h2m3 0h1m1 0h2m1 0h2m1 0h1m2 0h5m1 0h1m3 0h1m2 0h2m-41 1h7m2 0h1m3 0h1m1 0h6m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m1 0h1m2 0h1m-40 1h1m5 0h1m1 0h1m2 0h1m3 0h1m4 0h3m2 0h2m2 0h1m1 0h2m3 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m2 0h2m2 0h1m1 0h2m2 0h1m1 0h1m7 0h5m1 0h2m-40 1h1m1 0h3m1 0h1m1 0h3m6 0h6m1 0h2m1 0h1m1 0h1m1 0h2m3 0h2m-38 1h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h1m3 0h1m5 0h2m5 0h1m2 0h1m3 0h2m-41 1h1m5 0h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h4m1 0h2m1 0h1m-40 1h7m4 0h5m1 0h1m2 0h3m2 0h1m1 0h1m2 0h3m6 0h1"/></g></svg></div>
+        <div class="qr__texto">
+            <h2>Escaneie e <span>garanta o seu!</span></h2>
+            <p>Retirada no intervalo, sem frete.</p>
+            <ul class="qr__passos">
+                <li>Abra a câmera do celular</li>
+                <li>Aponte para o QR code</li>
+                <li>Escolha seus doces</li>
+            </ul>
+            <div class="qr__url">hiago-amaral.github.io/Projeto-Balem</div>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div>⭐ <span>4,9</span> · +1.200 avaliações</div>
+        <div>🔒 <span>Compra 100% segura</span></div>
+        <div>🎁 <span>Sem frete</span></div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -45,6 +45,10 @@ Não use `FLASK_DEBUG=1` quando o servidor estiver aberto para a rede.
 
 ## Onde colocar o vídeo da equipe 🎬
 
+**O vídeo da equipe já está no projeto:** `static/video/phishing.mp4` (30 s, vertical, H.264 com áudio).
+Para trocar, substitua o arquivo e rode `python gerar_estatico.py`. Vídeos verticais, gravados de celular, ganham
+uma caixa 9:16 automaticamente; vídeos horizontais continuam em 16:9.
+
 A página educativa já tem o espaço do vídeo pronto. Escolha **uma** das opções em [`app.py`](app.py):
 
 - **Arquivo:** coloque o `.mp4` em `static/video/` e deixe `VIDEO_ARQUIVO` com o mesmo nome do arquivo
@@ -176,6 +180,36 @@ ser marcadas como golpe pelos navegadores, e o GitHub pode remover o conteúdo. 
 **Diferenças da versão estática:** não existe `/painel` (quem conta os acessos é o GoatCounter) e o vídeo
 entra na hora de gerar o site (`python gerar_estatico.py` copia o arquivo ou usa o link do YouTube).
 
+## Cartaz com QR code 🖨️
+
+O cartaz A4 já está pronto em [`cartaz/cartaz-doce-pausa.pdf`](cartaz/cartaz-doce-pausa.pdf) (para imprimir)
+e em [`cartaz/cartaz-doce-pausa.png`](cartaz/cartaz-doce-pausa.png) (para mandar no WhatsApp). O QR code também
+está sozinho em `cartaz/qrcode.png` e `cartaz/qrcode.svg`, para usar no Canva.
+
+O QR leva para `https://hiago-amaral.github.io/Projeto-Balem/?utm_campaign=cartaz`. O trecho `?utm_campaign=cartaz`
+faz o GoatCounter mostrar, no bloco **Campaigns** do painel, quantas pessoas chegaram pelo cartaz.
+
+Para refazer o cartaz (trocar o doce em destaque, o endereço, etc.), edite as constantes no topo de
+[`gerar_cartaz.py`](gerar_cartaz.py) e rode:
+
+```bash
+pip install segno
+python gerar_cartaz.py
+```
+
+Isso gera `cartaz/cartaz.html`.
+
+### Banner para gráfica
+
+Para imprimir em tamanho grande, use [`cartaz/banner-doce-pausa.pdf`](cartaz/banner-doce-pausa.pdf). Ele é igual ao cartaz, mas com as fotos em alta resolução (3000 px na principal, em `cartaz/fotos-alta/`). O texto, a logo e o QR code são vetoriais, então a gráfica pode ampliar para qualquer tamanho **na proporção do A4** (A3, A2, A1... ou 60×85 cm) sem perder qualidade. Para refazer:
+
+```bash
+python gerar_cartaz.py --banner
+```
+
+Depois abra `cartaz/cartaz-banner.html` no Chrome ou Edge e salve como PDF (passo a passo acima). Para virar PDF, abra no Chrome ou Edge, tecle **Ctrl+P**, escolha
+**Salvar como PDF**, deixe as margens em **Nenhuma** e marque **Gráficos de segundo plano**.
+
 ## Estrutura
 
 ```
@@ -189,6 +223,9 @@ static/video/     coloque aqui o vídeo da equipe
 estatico/         modelos e JavaScript da versão estática
 gerar_estatico.py gera a versão estática na pasta docs/
 docs/             site pronto para o GitHub Pages (gerado, não edite)
+gerar_cartaz.py   gera o cartaz com QR code na pasta cartaz/
+cartaz/           cartaz A4 (PDF, PNG e HTML) e o QR code
+CLAUDE.md         resumo do projeto para o Claude (contexto e pendências)
 ```
 
 ## Aviso
